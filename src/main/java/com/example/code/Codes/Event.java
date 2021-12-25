@@ -2,7 +2,6 @@ package com.example.code.Codes;
 import java.time.LocalDateTime;
 public interface  Event {
 
-
     public String getEname();
 
     public LocalDateTime getDate();
