@@ -2,18 +2,29 @@
 package com.example.code.Codes;
 
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 /**
  * @Class DataBase
  * @author Abanoub
  */
-public class Database {
-    static ArrayList<Client> ClientList = new ArrayList<Client>();
-    static ArrayList<Driver> DriverList = new ArrayList<Driver>();
-    static ArrayList<Admin> AdminList = new ArrayList<Admin>();
-    static ArrayList<RegistrationDriver>regDriversList=new ArrayList<RegistrationDriver>();
-    static ArrayList<Driver> penDriver=new ArrayList<Driver>();
-    static ArrayList<String> SuspUser=new ArrayList<String>();
+public class Database implements GeneralDatabase {
+    private static Database inst;
+    public ArrayList<Client> ClientList = new ArrayList<Client>();
+    public ArrayList<Driver> DriverList = new ArrayList<Driver>();
+    public ArrayList<Admin> AdminList = new ArrayList<Admin>();
+    private ArrayList<RegistrationDriver>regDriversList=new ArrayList<RegistrationDriver>();
+    public ArrayList<Driver> penDriver=new ArrayList<Driver>();
+    public ArrayList<String> SuspUser=new ArrayList<String>();
+
+
+    private Database() {}
+    public static Database getInstance(){
+        if(inst==null){
+            inst=new Database();
+        }
+        return inst;
+    }
 
     /**
      * update to database
@@ -45,7 +56,7 @@ public class Database {
      * to get client list
      * @return list of clients
      */
-    public static ArrayList<Client> getClientList() {
+    public  ArrayList<Client> getClientList() {
         return ClientList;
     }
 
@@ -53,7 +64,7 @@ public class Database {
      * to get Driver's list
      * @return list of drivers
      */
-    public static ArrayList<Driver> getDriverList() {
+    public  ArrayList<Driver> getDriverList() {
         return DriverList;
     }
 
@@ -61,7 +72,7 @@ public class Database {
      * to get list of admins
      * @return list of admins
      */
-    public static ArrayList<Admin> getAdminList() {
+    public  ArrayList<Admin> getAdminList() {
         return AdminList;
     }
 
@@ -69,7 +80,7 @@ public class Database {
      * to get registeration Drivers list
      * @return list of registeration driver
      */
-    public static ArrayList<RegistrationDriver> getRegDriversList() {
+    public  ArrayList<RegistrationDriver> getRegDriversList() {
         return regDriversList;
     }
 
@@ -77,7 +88,7 @@ public class Database {
      * to get list of pending drivers
      * @return list of pending drivers
      */
-    public static ArrayList<Driver> getPenDriver() {
+    public  ArrayList<Driver> getPenDriver() {
         return penDriver;
     }
 
@@ -85,7 +96,7 @@ public class Database {
      * to get suspended user
      * @return suspended user
      */
-    public static ArrayList<String> getSuspUser() {
+    public  ArrayList<String> getSuspUser() {
         return SuspUser;
     }
 }

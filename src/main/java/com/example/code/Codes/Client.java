@@ -133,7 +133,7 @@ public class Client extends User implements SignUp {
      */
     public void rateAnyDriver() throws IndexOutOfBoundsException {
         try {
-            Database d = new Database();
+            Database d =Database.getInstance();
             for (int i = 0; i < d.getDriverList().size(); i++) {
                 System.out.println("Driver " + (i + 1));
                 System.out.println(d.getDriverList().get(i));

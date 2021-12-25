@@ -31,7 +31,7 @@ public class Driver extends User {
         this.driverLicense = DriverLicense;
         this.driverStatus = false;
         RegistrationDriver r = new RegistrationDriver(this, false);
-        d.regDriversList.add(r);
+        d.getRegDriversList().add(r);
 
     }
 
@@ -67,12 +67,12 @@ public class Driver extends User {
     /**
      * This function to see every ride request that was requested in the driver's favorite areas
      */
-    public void viewAllRides(){
+    /*public void viewAllRides(){
         for (int i = 0; i < this.Reqs.size(); i++) {
             System.out.println(this.Reqs.get(i));
         }
     }
-
+*/
     /**
      *This function to notify Driver with every request that was requested in the driver's favorite areas
      */
@@ -124,7 +124,7 @@ public class Driver extends User {
                 }
                 case 2 -> this.showRates();
                 case 3 -> {
-                    this.viewAllRides();
+                    //this.viewAllRides();
                     if(Reqs.size()>=1) {
                         System.out.println("Do you want to make Offer ? (Yes/No)");
                         String s = in.next();
@@ -213,8 +213,7 @@ public class Driver extends User {
         boolean flag = false;
         for (int i = 0; i < d.DriverList.size(); i++) {
             if (this.email.equals(d.DriverList.get(i).email) && this.password.equals(d.DriverList.get(i).password)) {
-
-                this.ID = d.DriverList.get(i).ID;
+                /*this.ID = d.DriverList.get(i).ID;
                 this.Reqs = d.DriverList.get(i).Reqs;
                 this.driverLicense = d.DriverList.get(i).driverLicense;
                 this.driverStatus = d.DriverList.get(i).driverStatus;
@@ -224,7 +223,7 @@ public class Driver extends User {
                 this.nationalId = d.DriverList.get(i).nationalId;
                 this.password = d.DriverList.get(i).password;
                 this.rate = d.DriverList.get(i).rate;
-                this.userName = d.DriverList.get(i).userName;
+                this.userName = d.DriverList.get(i).userName;*/
                 flag = true;
             }
         }

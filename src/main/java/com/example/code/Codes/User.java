@@ -5,7 +5,7 @@ package com.example.code.Codes;
  * @author joseph
  */
 abstract class User implements SignIn ,SignUp {
-    static Database d = new Database();
+    static Database d = Database.getInstance();
     protected String userName;
     public String email;
     protected String password;

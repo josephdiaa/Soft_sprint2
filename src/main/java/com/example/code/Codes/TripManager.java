@@ -14,7 +14,7 @@ public class TripManager{
      * @param cr , this is client Request
      */
     public void noftifyDrivers(Request cr){
-       Database d=new Database();
+       Database d=Database.getInstance();
         for (int i=0; i<d.DriverList.size(); i++){
             for(int j=0; j<d.DriverList.get(i).favArea.size(); j++){
                 if(d.DriverList.get(i).favArea.get(j).getName().equalsIgnoreCase(cr.source.getName())){

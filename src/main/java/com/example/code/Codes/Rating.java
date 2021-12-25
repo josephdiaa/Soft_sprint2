@@ -99,14 +99,6 @@ class Rating {
         }
         this.setAvgRate(sum/this.arr.size());
     }
-
-    /**
-     * to show the average rating
-     */
-    void showAvgRate(){
-        System.out.println("Driver's Average Rate is : " + this.getAvgRate());
-    }
-
     /**
      * to view the list of the ratings
      */
@@ -117,6 +109,5 @@ class Rating {
         {
             System.out.println(r);
         }
-
     }
 }

@@ -17,7 +17,7 @@ public class Admin implements SignIn {
 
     protected String email;
     protected String password;
-    Database d=new Database();
+    Database d=Database.getInstance();
     protected ArrayList<RegistrationDriver> list;
 
     /**
@@ -36,10 +36,10 @@ public class Admin implements SignIn {
      */
     public void viweListRegDriver(){
         Scanner sc=new Scanner(System.in);
-        for (int i=0;i<d.regDriversList.size();i++){
-            System.out.println(d.regDriversList.get(i));
+        for (int i=0;i<d.getRegDriversList().size();i++){
+            System.out.println(d.getRegDriversList().get(i));
         }
-        while(d.regDriversList.size() >= 1){
+        while(d.getRegDriversList().size() >= 1){
             System.out.println("Please Enter Driver ID You want to verify ");
             int s=sc.nextInt();
             verify(s);
@@ -56,7 +56,7 @@ public class Admin implements SignIn {
                 System.out.println("Wrong Input");
             }
         }
-        if(d.regDriversList.size()==0){
+        if(d.getRegDriversList().size()==0){
             System.out.println("This is Last Registration Thank You Admin :)");
         }
     };
@@ -66,10 +66,10 @@ public class Admin implements SignIn {
      * @param id Driver's ID to verify the account
      */
     public void verify(int id){
-        for(int i=0;i<d.regDriversList.size();i++){
-            if(d.regDriversList.get(i).driver.ID==id){
-                d.regDriversList.get(i).changeStatus(true);
-                d.regDriversList.remove(d.regDriversList.get(i));
+        for(int i=0;i<d.getRegDriversList().size();i++){
+            if(d.getRegDriversList().get(i).driver.ID==id){
+                d.getRegDriversList().get(i).changeStatus(true);
+                d.getRegDriversList().remove(d.getRegDriversList().get(i));
                 break;
             }
         }
