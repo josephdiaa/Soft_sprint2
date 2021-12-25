@@ -2,7 +2,7 @@ package com.example.code.Codes;
 
 import java.time.LocalDateTime;
 
-public class acceptEvent {
+public class acceptEvent implements Event{
     private String Ename;
     private LocalDateTime date;
     private Client client;
