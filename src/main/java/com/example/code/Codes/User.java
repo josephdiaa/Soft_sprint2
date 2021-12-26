@@ -12,7 +12,7 @@ abstract class User implements SignIn ,SignUp {
     protected String mobileNumber;
     protected long ID;
     protected static long count = 0;
-
+    public User(){}
     /**
      * Parameterize Constructor Take all Data of user and set it
      * @param userName User's Name

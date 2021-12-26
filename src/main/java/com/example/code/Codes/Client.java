@@ -102,25 +102,25 @@ public class Client extends User implements SignUp {
      *This Function to Get list of Request's Offers
      * @throws NullPointerException if there is no offer list
      */
-    public void ViewOffer() throws NullPointerException {
-        if(request.listOffer.size()>=1){
+    public String ViewOffer(int n) throws NullPointerException {
+        if(request.getListOffer().size()>=1){
             Scanner sc = new Scanner(System.in);
-
-            for (int i = 0; i < request.listOffer.size(); i++) {
-                System.out.println("Number of offer: " + (i + 1));
-                System.out.println(request.listOffer.get(i));
-            }
-            System.out.println("Enter Number of Offer to accept");
-            int n = sc.nextInt();
-            request.listOffer.get(n - 1).accept = true;
-            System.out.println("Do you want to set Rate ?(Yes/No)");
+            //for (int i = 0; i < request.getListOffer().size(); i++) {
+              //  System.out.println("Number of offer: " + (i + 1));
+                //System.out.println(request.getListOffer().get(i));
+            //}
+       //     System.out.println("Enter Number of Offer to accept");
+            request.getListOffer().get(n - 1).accept = true;
+            /*System.out.println("Do you want to set Rate ?(Yes/No)");
             String s = sc.next();
             if (s.equalsIgnoreCase("Yes")) {
                 System.out.println("Enter the rate");
                 double rate = sc.nextDouble();
-                this.rateDriver(request.listOffer.get(n - 1).driver, rate);
+                this.rateDriver(request.getListOffer().get(n - 1).driver, rate);
             }
-            request.listOffer.clear();
+            */
+            request.getListOffer().clear();
+            return"OFFER ACCEPTED";
         }
         else{
             System.out.println("No Offer now :(");

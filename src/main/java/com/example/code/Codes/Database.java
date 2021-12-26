@@ -14,8 +14,9 @@ public class Database implements GeneralDatabase {
     public ArrayList<Driver> DriverList = new ArrayList<Driver>();
     public ArrayList<Admin> AdminList = new ArrayList<Admin>();
     private ArrayList<RegistrationDriver>regDriversList=new ArrayList<RegistrationDriver>();
-    public ArrayList<Driver> penDriver=new ArrayList<Driver>();
-    public ArrayList<String> SuspUser=new ArrayList<String>();
+    private ArrayList<Driver> penDriver=new ArrayList<Driver>();
+    private ArrayList<String> SuspUser=new ArrayList<String>();
+    private ArrayList<TripEvent> EventList=new ArrayList<TripEvent>();
 
 
     private Database() {}

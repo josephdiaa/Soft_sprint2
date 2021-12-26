@@ -1,6 +1,6 @@
 
 package com.example.code.Codes;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -15,7 +15,7 @@ public class Driver extends User {
     protected ArrayList<Area> favArea = new ArrayList<Area>();
     Rating rate = new Rating();
     protected ArrayList<Request> Reqs = new ArrayList<Request>();
-
+    private LocalDateTime date;
     /**
      * Driver's constructor that takes all data
      * @param userName Driver's UserName
@@ -25,6 +25,7 @@ public class Driver extends User {
      * @param NationalId Driver's NationalId
      * @param DriverLicense Driver's DriverLicense
      */
+
     public Driver(String userName, String email, String password, String mobileNumber, String NationalId, String DriverLicense) {
         super(userName, email, password, mobileNumber);
         this.nationalId = NationalId;
@@ -76,10 +77,11 @@ public class Driver extends User {
     /**
      *This function to notify Driver with every request that was requested in the driver's favorite areas
      */
+
     /*public void notification() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(Reqs.size());
-        for (int i = 0; i < Reqs.size(); i++) {
+       // Scanner sc = new Scanner(System.in);
+       // System.out.println(Reqs.size());
+       *//* for (int i = 0; i < Reqs.size(); i++) {
             System.out.println(Reqs.get(i));
         }
         while (Reqs.size() >= 1) {
@@ -97,9 +99,6 @@ public class Driver extends User {
             } else {
                 System.out.println("Wrong Input");
             }
-        }
-        if (Reqs.size() == 0) {
-            System.out.println("This is Last Request Good Bye :)");
         }
     }*/
 
@@ -133,10 +132,10 @@ public class Driver extends User {
                         int pr = in.nextInt();
                         if (s.equalsIgnoreCase("yes")) {
                             for (int i = 0; i < Reqs.size(); i++) {
-                                if (Reqs.get(i).client.ID == id) {
+                                if (Reqs.get(i).getClient().ID == id) {
                                     Offer of = new Offer();
                                     of.makeOffer(pr, this);
-                                    Reqs.get(i).listOffer.add(of);
+                                    Reqs.get(i).getListOffer().add(of);
                                     Reqs.remove(Reqs.get(i));
                                     break;
                                 }
@@ -155,6 +154,14 @@ public class Driver extends User {
         }
     }
 
+    public void setReqs(ArrayList<Request> reqs) {
+        Reqs = reqs;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     /**
      * This function makes the driver make offer
      * @param id This is the ID of the customer who owns the ٌRequest
@@ -164,8 +171,9 @@ public class Driver extends User {
         Offer off = new Offer();
         off.makeOffer(price, this);
         for (int i = 0; i < Reqs.size(); i++) {
-            if (Reqs.get(i).client.ID == id) {
-                Reqs.get(i).listOffer.add(off);
+            if (Reqs.get(i).getClient().ID == id) {
+                Reqs.get(i).getListOffer().add(off);
+                Reqs.get(i).setPE(new priceEvent("priceEvent",this.userName, date, price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
@@ -303,6 +311,14 @@ public class Driver extends User {
      */
     public String getDriverLicense() {
         return driverLicense;
+    }
+
+    public ArrayList<Request> getReqs() {
+        return Reqs;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 
     /**

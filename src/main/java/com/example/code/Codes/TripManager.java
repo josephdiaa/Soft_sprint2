@@ -15,10 +15,10 @@ public class TripManager{
      */
     public void noftifyDrivers(Request cr){
        Database d=Database.getInstance();
-        for (int i=0; i<d.DriverList.size(); i++){
-            for(int j=0; j<d.DriverList.get(i).favArea.size(); j++){
-                if(d.DriverList.get(i).favArea.get(j).getName().equalsIgnoreCase(cr.source.getName())){
-                    d.DriverList.get(i).Reqs.add(cr);
+        for (int i=0; i<d.getDriverList().size(); i++){
+            for(int j=0; j<d.getDriverList().get(i).favArea.size(); j++){
+                if(d.getDriverList().get(i).favArea.get(j).getName().equalsIgnoreCase(cr.getSource().getName())){
+                    d.getDriverList().get(i).Reqs.add(cr);
                     break;
                 }
             }

@@ -7,17 +7,66 @@ import java.util.ArrayList;
  * @author joseph
  */
 public class Request {
-    protected Area source;
-    protected Area destination;
-    protected Client client;
-    protected Driver driver;
-    protected ArrayList<Offer>listOffer=new ArrayList<Offer>();
-
+    private Area source;
+    private Area destination;
+    private Client client;
+    private Driver driver;
+    private ArrayList<Offer>listOffer=new ArrayList<Offer>();
+    private Event PE;
+    private TripEvent rEvent;
     /**
      * Default Constructor
      */
     public Request( ){
 
+    }
+
+    public Area getSource() {
+        return source;
+    }
+
+    public Area getDestination() {
+        return destination;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public ArrayList<Offer> getListOffer() {
+        return listOffer;
+    }
+
+    public Event getPE() {
+        return PE;
+    }
+
+    public void setSource(Area source) {
+        this.source = source;
+    }
+
+    public void setDestination(Area destination) {
+        this.destination = destination;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public void setListOffer(ArrayList<Offer> listOffer) {
+        this.listOffer = listOffer;
+    }
+
+    public void setPE(Event PE) {
+        this.PE = PE;
     }
 
     /**

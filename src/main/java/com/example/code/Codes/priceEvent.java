@@ -3,21 +3,26 @@ import java.time.LocalDateTime;
 public class priceEvent implements Event{
     private String Ename;
     private LocalDateTime date;
-    private Driver Edriver;
+    private String Edriver;
     private double price;
+    Request req ;
 
-    public priceEvent(String ename, Driver edriver, LocalDateTime date, double price) {
+
+    public priceEvent(String ename, String driverName, LocalDateTime date, double price)
+    {
         Ename = ename;
-        Edriver = edriver;
+        Edriver = driverName;
         this.date = date;
         this.price = price;
+
     }
 
     public void setEname(String ename) {
         Ename = ename;
     }
 
-    public void setEdriver(Driver edriver) {
+
+    public void setEdriver(String edriver) {
         Edriver = edriver;
     }
 
@@ -33,7 +38,8 @@ public class priceEvent implements Event{
         return Ename;
     }
 
-    public Driver getEdriver() {
+
+    public String getEdriver() {
         return Edriver;
     }
 

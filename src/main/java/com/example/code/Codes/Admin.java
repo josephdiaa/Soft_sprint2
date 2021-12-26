@@ -133,7 +133,7 @@ public class Admin implements SignIn {
      * @return 2: if the admin login successfully
      *         3: if the admin not registered
      */
-    public int logIn() {
+    public String logIn() {
         boolean flag = false;
         for(int i=0; i< d.AdminList.size() ;i++)
         {
@@ -141,10 +141,10 @@ public class Admin implements SignIn {
                 flag = true;
         }
         if(flag==true){
-            return 2;
+            return "Successful login";
         }
         else{
-            return 3;
+            return "You are not admin";
         }
     }
 
