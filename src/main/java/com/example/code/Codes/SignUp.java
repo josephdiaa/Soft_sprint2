@@ -5,7 +5,7 @@ package com.example.code.Codes;
  * @author Abanoub
  */
 public interface SignUp {
-    public default Boolean Register(){
+    public default String Register(){
         return null;
     };
 }

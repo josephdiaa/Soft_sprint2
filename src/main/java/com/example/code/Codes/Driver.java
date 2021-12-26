@@ -57,12 +57,13 @@ public class Driver extends User {
      * This function to Change Driver Status
      * @param c Driver's status True or False
      */
-    public void changeDriverStatus(boolean c) {
+    public String changeDriverStatus(boolean c) {
         this.driverStatus = c;
         if (c) {
-            d.DriverList.add(this);
-            d.penDriver.remove(this);
+            d.getDriverList().add(this);
+            d.getPenDriver().remove(this);
         }
+        return "Successful Change Driver Status";
     }
 
     /**
@@ -83,29 +84,30 @@ public class Driver extends User {
        // System.out.println(Reqs.size());
        *//* for (int i = 0; i < Reqs.size(); i++) {
             System.out.println(Reqs.get(i));
-        }
-        while (Reqs.size() >= 1) {
-            System.out.println("Please Enter Client ID and price,If You want to Make offer");
+        }*//*
+        this.getReqs();
+        *//*while (Reqs.size() >= 1) {
+            //System.out.println("Please Enter Client ID and price,If You want to Make offer");
             int s = sc.nextInt();
             int p = sc.nextInt();
             DriverOffer(s, p);
-            System.out.println("Do You want to Continue ? (Yes/No)");
+            //System.out.println("Do You want to Continue ? (Yes/No)");
             String st = sc.next();
-            if (st.equalsIgnoreCase("yes")) {
+           *//**//* if (st.equalsIgnoreCase("yes")) {
                 continue;
             } else if (st.equalsIgnoreCase("No")) {
                 System.out.println("Thank You For Your Offer");
                 break;
             } else {
                 System.out.println("Wrong Input");
-            }
+            }*//*
         }
     }*/
 
     /**
      * This is Driver InterFace
      */
-    public void DriverInterface() {
+   /* public void DriverInterface() {
         Scanner in = new Scanner(System.in);
         int input = 0;
         while (input != 4) {
@@ -152,7 +154,7 @@ public class Driver extends User {
                 }
             }
         }
-    }
+    }*/
 
     public void setReqs(ArrayList<Request> reqs) {
         Reqs = reqs;
@@ -167,7 +169,7 @@ public class Driver extends User {
      * @param id This is the ID of the customer who owns the ٌRequest
      * @param price This is Offer's Price
      */
-    public void DriverOffer(int id, double price) {
+    public String DriverOffer(int id, double price) {
         Offer off = new Offer();
         off.makeOffer(price, this);
         for (int i = 0; i < Reqs.size(); i++) {
@@ -177,6 +179,7 @@ public class Driver extends User {
                 Reqs.remove(Reqs.get(i));
             }
         }
+        return "Successful Make Offer";
     }
 
     /**
@@ -184,25 +187,25 @@ public class Driver extends User {
      */
     public void showRates() {
         this.rate.viewRatingsList();
-    }
+    }//should Change
 
     /**
      * This is function Register
      * @return True if Registration Complete
      * @return False if Registration inComplete
      */
-    public Boolean Register() {
+    public String Register() {
         boolean check = false;
-        for (int i = 0; i < d.SuspUser.size(); i++) {
-            if (d.SuspUser.get(i) == this.email) {
+        for (int i = 0; i < d.getSuspUser().size(); i++) {
+            if (d.getSuspUser().get(i) == this.email) {
                 check = true;
             }
         }
         if (!check) {
-            d.penDriver.add(this);
-            return true;
+            d.getPenDriver().add(this);
+            return "Successful Register We wait verify from admin";
         } else {
-            return false;
+            return "This account has Suspended";
         }
     }
 
@@ -211,39 +214,37 @@ public class Driver extends User {
      * @return True if LogIn Complete
      * @return False if LogIn inComplete
      */
-    public int logIn() {
+    public String logIn() {
         boolean check = true;
-        for (int i = 0; i < d.SuspUser.size(); i++) {
-            if (d.SuspUser.get(i) == this.email) {
+        for (int i = 0; i < d.getSuspUser().size(); i++) {
+            if (d.getSuspUser().get(i) == this.email) {
                 check = false;
             }
         }
         boolean flag = false;
-        for (int i = 0; i < d.DriverList.size(); i++) {
-            if (this.email.equals(d.DriverList.get(i).email) && this.password.equals(d.DriverList.get(i).password)) {
-                /*this.ID = d.DriverList.get(i).ID;
-                this.Reqs = d.DriverList.get(i).Reqs;
-                this.driverLicense = d.DriverList.get(i).driverLicense;
-                this.driverStatus = d.DriverList.get(i).driverStatus;
-                this.email = d.DriverList.get(i).email;
-                this.favArea = d.DriverList.get(i).favArea;
-                this.mobileNumber = d.DriverList.get(i).mobileNumber;
-                this.nationalId = d.DriverList.get(i).nationalId;
-                this.password = d.DriverList.get(i).password;
-                this.rate = d.DriverList.get(i).rate;
-                this.userName = d.DriverList.get(i).userName;*/
-                flag = true;
+        int index=-1;
+        for (int i = 0; i < d.getDriverList().size(); i++) {
+            if (this.email.equals(d.getDriverList().get(i).email)) {
+                index=i;
+                if(this.password.equals(d.getDriverList().get(i).password)){
+                    flag = true;
+                }
             }
         }
         if (check == false && flag == false) {
-            return 1;
+            return "Login failed,Suspended Driver";
         } else if (check == true && flag == true) {
 
-            return 2;
+            return "Login Successful";
         } else {
-            return 3;
+           if(index==-1){
+               return "You must Register first or Wrong Email";
+           }
+           else if(this.email.equals(d.getDriverList().get(index).email)){
+               return "Your password Wrong";
+           }
         }
-
+        return "";
     }
 
     /**
@@ -351,5 +352,8 @@ public class Driver extends User {
      */
     public Rating getRate() {
         return rate;
+    }
+    public void AddReq(Request r){
+        this.Reqs.add(r);
     }
 }

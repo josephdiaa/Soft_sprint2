@@ -10,9 +10,9 @@ import java.util.ArrayList;
  */
 public class Database implements GeneralDatabase {
     private static Database inst;
-    public ArrayList<Client> ClientList = new ArrayList<Client>();
-    public ArrayList<Driver> DriverList = new ArrayList<Driver>();
-    public ArrayList<Admin> AdminList = new ArrayList<Admin>();
+    private ArrayList<Client> ClientList = new ArrayList<Client>();
+    private ArrayList<Driver> DriverList = new ArrayList<Driver>();
+    private ArrayList<Admin> AdminList = new ArrayList<Admin>();
     private ArrayList<RegistrationDriver>regDriversList=new ArrayList<RegistrationDriver>();
     private ArrayList<Driver> penDriver=new ArrayList<Driver>();
     private ArrayList<String> SuspUser=new ArrayList<String>();

@@ -56,7 +56,7 @@ public class Client extends User implements SignUp {
      * @return true: if Registration is successful
      *         false: if this Client is suspended
      */
-    public Boolean Register() {
+    public String Register() {
         boolean check = false;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
             if (d.getSuspUser().get(i) == this.email) {
@@ -65,7 +65,7 @@ public class Client extends User implements SignUp {
         }
         if (!check) {
             d.getClientList().add((Client) this);
-            return true;
+            return "Successful Registration";
         } else {
             return false;
         }
@@ -77,7 +77,7 @@ public class Client extends User implements SignUp {
      *         2: if this client login successful
      *         3: if this client not registered
      */
-    public int logIn() {
+    public String logIn() {
         boolean check = true;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
             if (d.getSuspUser().get(i) == this.email) {
@@ -85,17 +85,28 @@ public class Client extends User implements SignUp {
             }
         }
         boolean flag = false;
+        int index=-1;
         for (int i = 0; i < d.getClientList().size(); i++) {
-            if (this.email.equals(d.getClientList().get(i).email) && this.password.equals(d.getClientList().get(i).password))
+            if (this.email.equals(d.getClientList().get(i).email) )
+                index=i;
+            if(this.password.equals(d.getClientList().get(i).password)){
                 flag = true;
+            }
         }
         if (check == false && flag == false) {
-            return 1;
+            return "Login failed,Suspended client";
         } else if (check == true && flag == true) {
-            return 2;
+
+            return "Login Successful";
         } else {
-            return 3;
+            if(index==-1){
+                return "You must Register first or Wrong Email";
+            }
+            else if(this.email.equals(d.getDriverList().get(index).email)){
+                return "Your password Wrong";
+            }
         }
+        return "";
     }
 
     /**

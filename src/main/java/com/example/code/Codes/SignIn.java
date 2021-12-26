@@ -8,7 +8,7 @@ public interface SignIn {
    /**
     * This function is Log In
     */
-   public default int logIn(){
-      return 1;
+   public default String logIn(){
+      return "";
    }
 }

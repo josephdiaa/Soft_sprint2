@@ -80,14 +80,14 @@ public class Admin implements SignIn {
      * @param id User's ID(Driver/Client) to be suspended
      */
     public void suspend(int id){
-        for(int i=0;i<d.DriverList.size();i++){
-            if(d.DriverList.get(i).ID==id){
-                d.SuspUser.add(d.DriverList.get(i).email);
-                d.DriverList.remove(d.DriverList.get(i));
+        for(int i=0;i<d.getDriverList().size();i++){
+            if(d.getDriverList().get(i).ID==id){
+                d.getSuspUser().add(d.getDriverList().get(i).email);
+                d.getDriverList().remove(d.getDriverList().get(i));
             }
-            if(d.ClientList.get(i).ID==id){
-                d.SuspUser.add(d.ClientList.get(i).email);
-                d.ClientList.remove(d.ClientList.get(i));
+            if(d.getClientList().get(i).ID==id){
+                d.getSuspUser().add(d.getClientList().get(i).email);
+                d.getClientList().remove(d.getClientList().get(i));
             }
         }
     };
@@ -125,7 +125,7 @@ public class Admin implements SignIn {
      */
     public void addAdmin(String e, String p){
         Admin a=new Admin(e,p);
-        d.AdminList.add(a);
+        d.getAdminList().add(a);
     }
 
     /**
@@ -135,9 +135,9 @@ public class Admin implements SignIn {
      */
     public String logIn() {
         boolean flag = false;
-        for(int i=0; i< d.AdminList.size() ;i++)
+        for(int i=0; i< d.getAdminList().size() ;i++)
         {
-            if(this.email.equals(d.AdminList.get(i).email)&& this.password.equals(d.AdminList.get(i).password))
+            if(this.email.equals(d.getAdminList().get(i).email)&& this.password.equals(d.getAdminList().get(i).password))
                 flag = true;
         }
         if(flag==true){
