@@ -1,5 +1,6 @@
 package com.example.code.Codes;
 import java.time.LocalDateTime;
+
 public class priceEvent implements Event{
     private String Ename;
     private LocalDateTime date;
@@ -17,6 +18,7 @@ public class priceEvent implements Event{
 
     }
 
+
     public void setEname(String ename) {
         Ename = ename;
     }
@@ -26,13 +28,16 @@ public class priceEvent implements Event{
         Edriver = edriver;
     }
 
+
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
+
     public void setPrice(double price) {
         this.price = price;
     }
+
 
     public String getEname() {
         return Ename;
@@ -43,11 +48,14 @@ public class priceEvent implements Event{
         return Edriver;
     }
 
+
     public LocalDateTime getDate() {
         return date;
     }
 
+
     public double getPrice() {
         return price;
     }
+
 }

@@ -67,7 +67,7 @@ public class Client extends User implements SignUp {
             d.getClientList().add((Client) this);
             return "Successful Registration";
         } else {
-            return false;
+            return "suspended e-mail !";
         }
     }
 
@@ -134,7 +134,7 @@ public class Client extends User implements SignUp {
             return"OFFER ACCEPTED";
         }
         else{
-            System.out.println("No Offer now :(");
+            return"No Offer now :(";
         }
     }
 
@@ -142,7 +142,7 @@ public class Client extends User implements SignUp {
      * This Function to makes Client to rate Drivers
      * @throws IndexOutOfBoundsException if the client chooses the id greater than list of the driver
      */
-    public void rateAnyDriver() throws IndexOutOfBoundsException {
+    /*public void rateAnyDriver() throws IndexOutOfBoundsException {
         try {
             Database d =Database.getInstance();
             for (int i = 0; i < d.getDriverList().size(); i++) {
@@ -170,10 +170,11 @@ public class Client extends User implements SignUp {
         }
 
     }
-
+*/
     /**
      * This is Client InterFace
      */
+    /*
     public void clientInterface() {
         while (true) {
             System.out.println("Client's List");
@@ -202,7 +203,7 @@ public class Client extends User implements SignUp {
                 break;
         }
     }
-
+*/
     /**
      *This is Function to Get all Client's Data
      * @return client's data
