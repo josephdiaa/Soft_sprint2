@@ -11,13 +11,14 @@ public class priceEvent implements Event{
     Request req ;
 
 
+
+
     public priceEvent(String ename, String driverName, LocalDateTime date, double price)
     {
         Ename = ename;
         Edriver = driverName;
         this.date = date;
         this.price = price;
-
     }
 
 

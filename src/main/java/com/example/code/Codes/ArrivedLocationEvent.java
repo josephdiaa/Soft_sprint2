@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 public class ArrivedLocationEvent implements Event{
     private String Ename;
     private LocalDateTime date;
-    private Driver Edriver;
+    private String Edriver;
     private String userName;
 
     public ArrivedLocationEvent(String ename, LocalDateTime date, String edriver, String userName) {
@@ -41,7 +41,7 @@ public class ArrivedLocationEvent implements Event{
         this.userName = userName;
     }
 
-    public Driver getEdriver() {
+    public String getEdriver() {
         return Edriver;
     }
 

@@ -28,6 +28,7 @@ public class Admin implements SignIn {
     public Admin(String e,String p) {
         this.email=e;
         this.password=p;
+        d.getAdminList().add(this);
     }
 
     /**
@@ -64,14 +65,15 @@ public class Admin implements SignIn {
      *this function to verify the driver's account
      * @param id Driver's ID to verify the account
      */
-    public void verify(int id){
+    public String verify(int id){
         for(int i=0;i<d.getRegDriversList().size();i++){
-            if(d.getRegDriversList().get(i).driver.ID==id){
+            if(d.getRegDriversList().get(i).driver.ID==id) {
                 d.getRegDriversList().get(i).changeStatus(true);
                 d.getRegDriversList().remove(d.getRegDriversList().get(i));
-                break;
+                return "Driver with id : " + id + " verified";
             }
         }
+        return "Not valid id";
     }
 
     /**

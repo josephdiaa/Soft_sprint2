@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class acceptEvent implements Event{
     private String Ename;
     private LocalDateTime date;
-    private Client client;
+    private String client;
 
     public acceptEvent(String ename, LocalDateTime date, String client) {
         Ename = ename;
@@ -21,7 +21,7 @@ public class acceptEvent implements Event{
         return date;
     }
 
-    public Client getClient() {
+    public String getClient() {
         return client;
     }
 
@@ -33,7 +33,7 @@ public class acceptEvent implements Event{
         this.date = date;
     }
 
-    public void setClient(Client client) {
+    public void setClient(String client) {
         this.client = client;
     }
 }
