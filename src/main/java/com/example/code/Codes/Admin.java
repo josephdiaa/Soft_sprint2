@@ -26,7 +26,6 @@ public class Admin implements SignIn {
      * @param p Admin's password
      */
     public Admin(String e,String p) {
-        Scanner sc=new Scanner(System.in);
         this.email=e;
         this.password=p;
     }

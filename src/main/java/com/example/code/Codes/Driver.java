@@ -16,6 +16,18 @@ public class Driver extends User {
     Rating rate = new Rating();
     protected ArrayList<Request> Reqs = new ArrayList<Request>();
     private LocalDateTime date;
+    //private Boolean inRide;
+    private Request currentRequest=new Request();
+
+
+    public Request getCurrentRequest() {
+        return currentRequest;
+    }
+
+    public void setCurrentRequest(Request currentRequest) {
+        this.currentRequest = currentRequest;
+    }
+
     /**
      * Driver's constructor that takes all data
      * @param userName Driver's UserName
@@ -32,8 +44,8 @@ public class Driver extends User {
         this.driverLicense = DriverLicense;
         this.driverStatus = false;
         RegistrationDriver r = new RegistrationDriver(this, false);
+        //this.inRide=false;
         d.getRegDriversList().add(r);
-
     }
 
     /**
@@ -175,12 +187,13 @@ public class Driver extends User {
         for (int i = 0; i < Reqs.size(); i++) {
             if (Reqs.get(i).getClient().ID == id) {
                 Reqs.get(i).getListOffer().add(off);
-                Reqs.get(i).setPE(new priceEvent("priceEvent",this.userName, date, price ));
+                Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.userName, date.now(), price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
         return "Successful Make Offer";
     }
+
 
     /**
      * This function makes Driver Show all own ratings from Client
@@ -355,5 +368,16 @@ public class Driver extends User {
     }
     public void AddReq(Request r){
         this.Reqs.add(r);
+    }
+    public String ArriveLocation(Request currentRequest)
+    {
+        currentRequest.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.userName,currentRequest.getClient().getUserName()));
+        return "Arrived Location";
+    }
+    public String endRide(Request currentRequest)
+    {
+        currentRequest.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),this.userName,currentRequest.getClient().getUserName()));
+        currentRequest=null;
+        return "Arrived Des";
     }
 }

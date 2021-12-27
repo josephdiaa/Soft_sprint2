@@ -18,6 +18,9 @@ public class Database implements GeneralDatabase {
     private ArrayList<String> SuspUser=new ArrayList<String>();
     private ArrayList<TripEvent> EventList=new ArrayList<TripEvent>();
 
+    public ArrayList<TripEvent> getEventList() {
+        return EventList;
+    }
 
     private Database() {}
     public static Database getInstance(){

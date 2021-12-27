@@ -5,10 +5,10 @@ public class arrivedDestinationEvent implements Event {
 
     private String Ename;
     private LocalDateTime date;
-    private Driver Edriver;
+    private String Edriver;
     private String userName;
 
-    public arrivedDestinationEvent(String Ename, LocalDateTime date, Driver Edriver, String userName) {
+    public arrivedDestinationEvent(String Ename, LocalDateTime date, String Edriver, String userName) {
         this.Ename = Ename;
         this.userName = userName;
         this.Edriver = Edriver;

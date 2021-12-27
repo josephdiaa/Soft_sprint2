@@ -6,7 +6,7 @@ public class ArrivedLocationEvent implements Event{
     private Driver Edriver;
     private String userName;
 
-    public ArrivedLocationEvent(String ename, LocalDateTime date, Driver edriver, String userName) {
+    public ArrivedLocationEvent(String ename, LocalDateTime date, String edriver, String userName) {
         Ename = ename;
         this.date = date;
         Edriver = edriver;
@@ -33,7 +33,7 @@ public class ArrivedLocationEvent implements Event{
         this.date = date;
     }
 
-    public void setEdriver(Driver edriver) {
+    public void setEdriver(String edriver) {
         Edriver = edriver;
     }
 

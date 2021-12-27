@@ -1,6 +1,7 @@
 
 package com.example.code.Codes;
-
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * @Class Client
@@ -8,6 +9,7 @@ import java.util.Scanner;
  */
 public class Client extends User implements SignUp {
     private Request request=new Request();
+    private LocalDateTime date;
 
     /**
      * CLient's constructor that takes all data
@@ -35,10 +37,11 @@ public class Client extends User implements SignUp {
      * @param destination destination area for the requested ride
      */
 
-    public void requestRide(String source, String destination) {
+    public String requestRide(String source, String destination) {
         Area src = new Area(source);
         Area dest = new Area(destination);
         request = new Request(src, dest, this);
+        return "Request Ride Created";
     }
 
     /**
@@ -113,15 +116,20 @@ public class Client extends User implements SignUp {
      *This Function to Get list of Request's Offers
      * @throws NullPointerException if there is no offer list
      */
-    public String ViewOffer(int n) throws NullPointerException {
+    public String AcceptOffer(int n) throws NullPointerException {
         if(request.getListOffer().size()>=1){
-            Scanner sc = new Scanner(System.in);
+            //Scanner sc = new Scanner(System.in);
             //for (int i = 0; i < request.getListOffer().size(); i++) {
               //  System.out.println("Number of offer: " + (i + 1));
                 //System.out.println(request.getListOffer().get(i));
             //}
        //     System.out.println("Enter Number of Offer to accept");
             request.getListOffer().get(n - 1).accept = true;
+            request.getDriver().setCurrentRequest(request);
+            request.getrEvent().AddEvent(new acceptEvent("Accept Event",date.now(),this.userName));
+            request.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),request.getDriver().getUserName(),this.userName));
+            request.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),request.getDriver().getUserName(),this.userName));
+            d.getEventList().add(request.getrEvent());
             /*System.out.println("Do you want to set Rate ?(Yes/No)");
             String s = sc.next();
             if (s.equalsIgnoreCase("Yes")) {
@@ -131,13 +139,15 @@ public class Client extends User implements SignUp {
             }
             */
             request.getListOffer().clear();
-            return"OFFER ACCEPTED";
+            return"Offer Accepted";
         }
         else{
             return"No Offer now :(";
         }
     }
-
+    public ArrayList<Offer> ViewOfferList(){
+        return request.getListOffer();
+    }
     /**
      * This Function to makes Client to rate Drivers
      * @throws IndexOutOfBoundsException if the client chooses the id greater than list of the driver

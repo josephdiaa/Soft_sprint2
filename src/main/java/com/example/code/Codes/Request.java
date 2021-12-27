@@ -12,7 +12,6 @@ public class Request {
     private Client client;
     private Driver driver;
     private ArrayList<Offer>listOffer=new ArrayList<Offer>();
-    private Event PE;
     private TripEvent rEvent;
     /**
      * Default Constructor
@@ -23,6 +22,14 @@ public class Request {
 
     public Area getSource() {
         return source;
+    }
+
+    public void setrEvent(TripEvent rEvent) {
+        this.rEvent = rEvent;
+    }
+
+    public TripEvent getrEvent() {
+        return rEvent;
     }
 
     public Area getDestination() {
@@ -41,9 +48,6 @@ public class Request {
         return listOffer;
     }
 
-    public Event getPE() {
-        return PE;
-    }
 
     public void setSource(Area source) {
         this.source = source;
@@ -63,10 +67,6 @@ public class Request {
 
     public void setListOffer(ArrayList<Offer> listOffer) {
         this.listOffer = listOffer;
-    }
-
-    public void setPE(Event PE) {
-        this.PE = PE;
     }
 
     /**

@@ -7,7 +7,7 @@ public class acceptEvent implements Event{
     private LocalDateTime date;
     private Client client;
 
-    public acceptEvent(String ename, LocalDateTime date, Client client) {
+    public acceptEvent(String ename, LocalDateTime date, String client) {
         Ename = ename;
         this.date = date;
         this.client = client;
