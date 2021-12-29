@@ -20,7 +20,7 @@ public class hello {
       Driver d=new Driver("jo","jo@","123","010","147","159",5);
       Area a1=new Area("helwan");
       Area a2=new Area("Dokki");
-      Client c=new Client("joker","Joker@","123","0128");
+      Client c=new Client("joker","Joker@","123","0128",25,1,2002);
       Request r=new Request(a1,a2,c,2);
       d.AddReq(r);
       return d.getReqs();

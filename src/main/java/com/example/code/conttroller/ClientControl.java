@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 @RestController
 public class ClientControl {
-    Client Fristclient=new Client("joseph","joseph.diaa@gami.com","123","012");
+    Client Fristclient=new Client("joseph","joseph.diaa@gami.com","123","012",10,1,2002);
 
     @GetMapping("/Client/Register")
     public String RegisterClient(){
@@ -15,7 +15,7 @@ public class ClientControl {
 
     @PostMapping("/Client/RequestRide/{s}/{d}")
     public String RequestRide(@PathVariable String s, @PathVariable String d){
-        return Fristclient.requestRide(s,d,5);
+        return Fristclient.requestRide(s,d,2);
     }
     @GetMapping("/Client/viewOffer")
     public ArrayList<Offer> viewoff()
@@ -27,4 +27,5 @@ public class ClientControl {
     {
        return Fristclient.AcceptOffer(n);
     }
+
 }

@@ -20,7 +20,7 @@ public class TripManager{
                 if(d.getDriverList().get(i).getFavArea().get(j).getName().equalsIgnoreCase(cr.getSource().getName())
                         &&d.getDriverList().get(i).getCarCapcity()>=cr.getNumPassenger()){
                     if(d.getDriverList().get(i).getCurrentRequest()!=null){
-                        d.getDriverList().get(i).getReqs().add(cr);
+                        d.getDriverList().get(i).addReq(cr);
                         break;
                     }
                 }

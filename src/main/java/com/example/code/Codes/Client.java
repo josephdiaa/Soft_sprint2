@@ -10,6 +10,18 @@ import java.util.Scanner;
 public class Client extends User implements SignUp {
     private Request request=new Request();
     private LocalDateTime date;
+    private int day;
+    private int month;
+    private int year;
+    private boolean firstRide=true;
+
+    public boolean isFirstRide() {
+        return firstRide;
+    }
+
+    public void setFirstRide(boolean firstRide) {
+        this.firstRide = firstRide;
+    }
 
     /**
      * CLient's constructor that takes all data
@@ -18,8 +30,23 @@ public class Client extends User implements SignUp {
      * @param password Client's password
      * @param mobileNumber Client's mobile number
      */
-    public Client(String userName, String email, String password, String mobileNumber) {
+    public Client(String userName, String email, String password, String mobileNumber,int d,int m,int y) {
         super(userName, email, password, mobileNumber);
+        this.day=d;
+        this.month=m;
+        this.year=y;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     /**

@@ -12,10 +12,10 @@ public class Area {
 
     /**
      * Area's constructor
-     * @param area to set the area
+     * @param name to set the area
      */
-    public Area(String area){
-        this.name = area;
+    public Area(String name){
+        this.name = name;
     }
 
     /**

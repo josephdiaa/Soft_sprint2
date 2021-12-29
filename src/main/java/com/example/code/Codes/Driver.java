@@ -17,6 +17,7 @@ public class Driver extends User {
     private Rating rate = new Rating();
     private ArrayList<Request> Reqs = new ArrayList<Request>();
     private LocalDateTime date;
+    private DIscount dis;
     //private Boolean inRide;
     private Request currentRequest=new Request();
 
@@ -56,7 +57,9 @@ public class Driver extends User {
     public void setCarCapcity(int carCapcity) {
         this.carCapcity = carCapcity;
     }
-
+    public void addReq(Request r){
+        Reqs.add(r);
+    }
     /**
      * Driver's constructor to take username and password for log in
      * @param email Driver's email
@@ -105,12 +108,13 @@ public class Driver extends User {
         off.makeOffer(price, this);
         for (int i = 0; i < Reqs.size(); i++) {
             if (Reqs.get(i).getClient().getID() == id) {
-
                 Reqs.get(i).getListOffer().add(off);
+                dis=new DIscount(this.getReqs().get(i),date.now().getDayOfMonth(), date.now().getMonthValue());
                 Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
+
         return "Successful Make Offer";
     }
 

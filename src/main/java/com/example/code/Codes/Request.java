@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @ Class Request
  * @author joseph
  */
-public class Request {
+public class Request  {
     private Area source;
     private Area destination;
     private Client client;
