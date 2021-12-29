@@ -17,6 +17,16 @@ public class Database implements GeneralDatabase {
     private ArrayList<Driver> penDriver=new ArrayList<Driver>();
     private ArrayList<String> SuspUser=new ArrayList<String>();
     private ArrayList<TripEvent> EventList=new ArrayList<TripEvent>();
+    private ArrayList<Area> DiscountAreas = new ArrayList<Area>();
+
+    public void addDisArea(Area a)
+    {
+        DiscountAreas.add(a);
+    }
+
+    public ArrayList<Area> getDiscountAreas() {
+        return DiscountAreas;
+    }
 
     public ArrayList<TripEvent> getEventList() {
         return EventList;

@@ -13,7 +13,8 @@ public class Request  {
     private Driver driver;
     private int numPassenger;
     private ArrayList<Offer>listOffer=new ArrayList<Offer>();
-    private TripEvent rEvent;
+    private TripEvent rEvent=new TripEvent();
+
     /**
      * Default Constructor
      */

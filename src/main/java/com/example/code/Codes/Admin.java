@@ -20,6 +20,12 @@ public class Admin implements SignIn {
     Database d=Database.getInstance();
     private ArrayList<RegistrationDriver> list;
 
+    String addDisArea(Area a)
+    {
+        d.addDisArea(a);
+        return "Area  is added ";
+    }
+
     /**
      *Admin's constructor to set his email and password
      * @param e Admin's email

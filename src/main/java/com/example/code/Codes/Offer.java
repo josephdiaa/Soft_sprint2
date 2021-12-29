@@ -8,6 +8,16 @@ public class Offer  {
     private double price;
     private Driver driver;
     private boolean accept;
+    private double discountedPrice;
+    DIscount dis;
+
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
 
     /**
      * Default Constructor To set Accept false
