@@ -30,13 +30,25 @@ public class RegistrationDriver {
     }
 
     /**
-     * to print the registeration driver data
-     * @return the registeration driver data
+     * to print the registration driver data
+     * @return the registration driver data
      */
     @Override
     public String toString() {
         return "RegistrationDriver{" +'\n'+
                 "status=" + status +'\n'+
                 driver ;
+    }
+    public void setDriver(Driver driver){
+        this.driver=driver;
+    }
+    public Driver getDriver(){
+        return driver;
+    }
+    public void setStatus(boolean status){
+        this.status=status;
+    }
+    public boolean getStatus(){
+        return status;
     }
 }
