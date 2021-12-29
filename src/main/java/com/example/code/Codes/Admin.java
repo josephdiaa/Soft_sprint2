@@ -15,10 +15,10 @@ import java.util.Scanner;
  */
 public class Admin implements SignIn {
 
-    protected String email;
-    protected String password;
+    private String email;
+    private String password;
     Database d=Database.getInstance();
-    protected ArrayList<RegistrationDriver> list;
+    private ArrayList<RegistrationDriver> list;
 
     /**
      *Admin's constructor to set his email and password

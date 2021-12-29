@@ -5,9 +5,9 @@ package com.example.code.Codes;
  * @author Mina
  */
 public class Offer  {
-    protected double price;
-    protected Driver driver;
-    protected boolean accept;
+    private double price;
+    private Driver driver;
+    private boolean accept;
 
     /**
      * Default Constructor To set Accept false

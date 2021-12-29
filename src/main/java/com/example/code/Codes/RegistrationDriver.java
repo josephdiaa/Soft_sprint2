@@ -5,8 +5,8 @@ package com.example.code.Codes;
  * @author joseph diaa
  */
 public class RegistrationDriver {
-    protected boolean status;
-    Driver driver;
+    private boolean status;
+    private Driver driver;
 
     /**
      * to get the driver who want to register

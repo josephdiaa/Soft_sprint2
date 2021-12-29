@@ -89,9 +89,9 @@ public class Client extends User implements SignUp {
         boolean flag = false;
         int index=-1;
         for (int i = 0; i < d.getClientList().size(); i++) {
-            if (this.email.equals(d.getClientList().get(i).email) )
+            if (this.getEmail().equals(d.getClientList().get(i).getEmail()) )
                 index=i;
-            if(this.password.equals(d.getClientList().get(i).password)){
+            if(this.getPassword().equals(d.getClientList().get(i).getPassword())){
                 flag = true;
             }
         }
@@ -123,7 +123,7 @@ public class Client extends User implements SignUp {
                 //System.out.println(request.getListOffer().get(i));
             //}
        //     System.out.println("Enter Number of Offer to accept");
-            request.getListOffer().get(n - 1).accept = true;
+            request.getListOffer().get(n - 1).setAccept(true);
             request.getDriver().setCurrentRequest(request);
             request.getrEvent().AddEvent(new acceptEvent("Accept Event",date.now(),this.getUserName()));
             d.getEventList().add(request.getrEvent());

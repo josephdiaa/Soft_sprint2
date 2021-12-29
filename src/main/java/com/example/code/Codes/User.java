@@ -6,12 +6,12 @@ package com.example.code.Codes;
  */
 abstract class User implements SignIn ,SignUp {
     static Database d = Database.getInstance();
-    protected String userName;
-    public String email;
-    protected String password;
-    protected String mobileNumber;
-    protected long ID;
-    protected static long count = 0;
+    private String userName;
+    private String email;
+    private String password;
+    private String mobileNumber;
+    private long ID;
+    private static long count = 0;
     public User(){}
     /**
      * Parameterize Constructor Take all Data of user and set it
