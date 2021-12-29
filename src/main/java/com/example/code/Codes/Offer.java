@@ -35,11 +35,11 @@ public class Offer  {
         return "Offer:" +'\n'+
                 "   price=" + price +'\n'+
                 "Driver:"+'\n'+
-                 "  Driver name="+ driver.userName +'\n'
-                +"  Driver mobile ="+driver.mobileNumber+'\n'
-                +"  Driver license="+driver.driverLicense+'\n'
-                +"  Driver national ID ="+driver.nationalId+'\n'
-                +"  Driver rate = "+driver.rate.getAvgRate();
+                 "  Driver name="+ driver.getUserName() +'\n'
+                +"  Driver mobile ="+driver.getMobileNumber()+'\n'
+                +"  Driver license="+driver.getDriverLicense()+'\n'
+                +"  Driver national ID ="+driver.getNationalId()+'\n'
+                +"  Driver rate = "+driver.getRate().getAvgRate();
     }
 
     /**

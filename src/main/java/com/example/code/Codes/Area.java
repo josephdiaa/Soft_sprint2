@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Area {
 
-    String name;
+    private String name;
 
     /**
      * Area's constructor

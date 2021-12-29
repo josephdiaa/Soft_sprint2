@@ -1,5 +1,4 @@
 package com.example.code.conttroller;
-import com.example.code.Codes.Client;
 import org.springframework.web.bind.annotation.*;
 import com.example.code.Codes.*;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class ClientControl {
 
     @PostMapping("/Client/RequestRide/{s}/{d}")
     public String RequestRide(@PathVariable String s, @PathVariable String d){
-        return Fristclient.requestRide(s,d);
+        return Fristclient.requestRide(s,d,5);
     }
     @GetMapping("/Client/viewOffer")
     public ArrayList<Offer> viewoff()

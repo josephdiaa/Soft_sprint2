@@ -9,16 +9,16 @@ import java.util.Scanner;
  */
 public class Driver extends User {
 
-    protected String driverLicense;
-    protected boolean driverStatus;
-    protected String nationalId;
-    protected ArrayList<Area> favArea = new ArrayList<Area>();
-    Rating rate = new Rating();
-    protected ArrayList<Request> Reqs = new ArrayList<Request>();
+    private String driverLicense;
+    private boolean driverStatus;
+    private String nationalId;
+    private int carCapcity;
+    private ArrayList<Area> favArea = new ArrayList<Area>();
+    private Rating rate = new Rating();
+    private ArrayList<Request> Reqs = new ArrayList<Request>();
     private LocalDateTime date;
     //private Boolean inRide;
     private Request currentRequest=new Request();
-
 
     public Request getCurrentRequest() {
         return currentRequest;
@@ -38,14 +38,23 @@ public class Driver extends User {
      * @param DriverLicense Driver's DriverLicense
      */
 
-    public Driver(String userName, String email, String password, String mobileNumber, String NationalId, String DriverLicense) {
+    public Driver(String userName, String email, String password, String mobileNumber, String NationalId, String DriverLicense,int capCar ) {
         super(userName, email, password, mobileNumber);
         this.nationalId = NationalId;
         this.driverLicense = DriverLicense;
         this.driverStatus = false;
+        this.carCapcity=capCar;
         RegistrationDriver r = new RegistrationDriver(this, false);
         //this.inRide=false;
         d.getRegDriversList().add(r);
+    }
+
+    public int getCarCapcity() {
+        return carCapcity;
+    }
+
+    public void setCarCapcity(int carCapcity) {
+        this.carCapcity = carCapcity;
     }
 
     /**
@@ -78,96 +87,6 @@ public class Driver extends User {
         return "Successful Change Driver Status";
     }
 
-    /**
-     * This function to see every ride request that was requested in the driver's favorite areas
-     */
-    /*public void viewAllRides(){
-        for (int i = 0; i < this.Reqs.size(); i++) {
-            System.out.println(this.Reqs.get(i));
-        }
-    }
-*/
-    /**
-     *This function to notify Driver with every request that was requested in the driver's favorite areas
-     */
-
-    /*public void notification() {
-       // Scanner sc = new Scanner(System.in);
-       // System.out.println(Reqs.size());
-       *//* for (int i = 0; i < Reqs.size(); i++) {
-            System.out.println(Reqs.get(i));
-        }*//*
-        this.getReqs();
-        *//*while (Reqs.size() >= 1) {
-            //System.out.println("Please Enter Client ID and price,If You want to Make offer");
-            int s = sc.nextInt();
-            int p = sc.nextInt();
-            DriverOffer(s, p);
-            //System.out.println("Do You want to Continue ? (Yes/No)");
-            String st = sc.next();
-           *//**//* if (st.equalsIgnoreCase("yes")) {
-                continue;
-            } else if (st.equalsIgnoreCase("No")) {
-                System.out.println("Thank You For Your Offer");
-                break;
-            } else {
-                System.out.println("Wrong Input");
-            }*//*
-        }
-    }*/
-
-    /**
-     * This is Driver InterFace
-     */
-   /* public void DriverInterface() {
-        Scanner in = new Scanner(System.in);
-        int input = 0;
-        while (input != 4) {
-            System.out.println("1- Add new Favourite area.");
-            System.out.println("2- show ratings of your clients.");
-            System.out.println("3- show all rides.");
-            System.out.println("4- exit");
-            input = in.nextInt();
-            switch (input) {
-                case 1 -> {
-                    String ar;
-                    System.out.println("Enter the name of area you want to add");
-                    ar = in.next();
-                    this.addFavArea(new Area(ar));
-                }
-                case 2 -> this.showRates();
-                case 3 -> {
-                    //this.viewAllRides();
-                    if(Reqs.size()>=1) {
-                        System.out.println("Do you want to make Offer ? (Yes/No)");
-                        String s = in.next();
-                        System.out.println("Enter ID of Client and price of Your Offer respectively.");
-                        int id = in.nextInt();
-                        int pr = in.nextInt();
-                        if (s.equalsIgnoreCase("yes")) {
-                            for (int i = 0; i < Reqs.size(); i++) {
-                                if (Reqs.get(i).getClient().ID == id) {
-                                    Offer of = new Offer();
-                                    of.makeOffer(pr, this);
-                                    Reqs.get(i).getListOffer().add(of);
-                                    Reqs.remove(Reqs.get(i));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else{
-                        System.out.println("There is no Requests");
-                        break;
-                    }
-                }
-                case 4 -> {
-                    break;
-                }
-            }
-        }
-    }*/
-
     public void setReqs(ArrayList<Request> reqs) {
         Reqs = reqs;
     }
@@ -185,15 +104,15 @@ public class Driver extends User {
         Offer off = new Offer();
         off.makeOffer(price, this);
         for (int i = 0; i < Reqs.size(); i++) {
-            if (Reqs.get(i).getClient().ID == id) {
+            if (Reqs.get(i).getClient().getID() == id) {
+
                 Reqs.get(i).getListOffer().add(off);
-                Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.userName, date.now(), price ));
+                Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
         return "Successful Make Offer";
     }
-
 
     /**
      * This function makes Driver Show all own ratings from Client
@@ -210,7 +129,7 @@ public class Driver extends User {
     public String Register() {
         boolean check = false;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
-            if (d.getSuspUser().get(i) == this.email) {
+            if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = true;
             }
         }
@@ -230,16 +149,16 @@ public class Driver extends User {
     public String logIn() {
         boolean check = true;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
-            if (d.getSuspUser().get(i) == this.email) {
+            if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = false;
             }
         }
         boolean flag = false;
         int index=-1;
         for (int i = 0; i < d.getDriverList().size(); i++) {
-            if (this.email.equals(d.getDriverList().get(i).email)) {
+            if (this.getEmail().equals(d.getDriverList().get(i).getEmail())) {
                 index=i;
-                if(this.password.equals(d.getDriverList().get(i).password)){
+                if(this.getPassword().equals(d.getDriverList().get(i).getPassword())){
                     flag = true;
                 }
             }
@@ -253,7 +172,7 @@ public class Driver extends User {
            if(index==-1){
                return "You must Register first or Wrong Email";
            }
-           else if(this.email.equals(d.getDriverList().get(index).email)){
+           else if(this.getEmail().equals(d.getDriverList().get(index).getEmail())){
                return "Your password Wrong";
            }
         }
@@ -267,10 +186,10 @@ public class Driver extends User {
     @Override
     public String toString() {
         return "Driver:" + '\n'
-                + "   userName=" + userName + '\n'
-                + "   email=" + email + '\n'
-                + "   mobileNumber=" + mobileNumber + '\n'
-                + "   ID=" + ID + '\n'
+                + "   userName=" + getUserName() + '\n'
+                + "   email=" + getEmail() + '\n'
+                + "   mobileNumber=" + getMobileNumber() + '\n'
+                + "   ID=" + getID() + '\n'
                 + "   driverLicense=" + driverLicense + '\n'
                 + "   driverStatus=" + driverStatus + '\n'
                 + "   nationalId=" + nationalId + '\n'
@@ -371,13 +290,14 @@ public class Driver extends User {
     }
     public String ArriveLocation(Request currentRequest)
     {
-        currentRequest.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.userName,currentRequest.getClient().getUserName()));
+        currentRequest.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
         return "Arrived Location";
     }
     public String endRide(Request currentRequest)
     {
-        currentRequest.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),this.userName,currentRequest.getClient().getUserName()));
+        currentRequest.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
         currentRequest=null;
         return "Arrived Des";
     }
+
 }

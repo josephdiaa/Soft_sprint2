@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 @RestController
 public class DrvierConttrol {
-    Driver FirstDriver=new Driver("abdo","abdo@gmail.com","147","010","789","174");
+    Driver FirstDriver=new Driver("abdo","abdo@gmail.com","147","010","789","174",5);
     Database b=Database.getInstance();
+
     @GetMapping("/Driver/Register")
     public String RegisterDriver(){
         //FirstDriver.addFavArea(new Area("dokki"));

@@ -8,7 +8,7 @@ public class priceEvent implements Event{
     private LocalDateTime date;
     private String Edriver;
     private double price;
-    Request req ;
+    private Request req ;
 
 
 

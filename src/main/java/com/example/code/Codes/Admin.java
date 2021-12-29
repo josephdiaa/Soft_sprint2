@@ -67,7 +67,7 @@ public class Admin implements SignIn {
      */
     public String verify(int id){
         for(int i=0;i<d.getRegDriversList().size();i++){
-            if(d.getRegDriversList().get(i).driver.ID==id) {
+            if(d.getRegDriversList().get(i).getDriver().getID()==id) {
                 d.getRegDriversList().get(i).changeStatus(true);
                 d.getRegDriversList().remove(d.getRegDriversList().get(i));
                 return "Driver with id : " + id + " verified";
@@ -82,12 +82,12 @@ public class Admin implements SignIn {
      */
     public void suspend(int id){
         for(int i=0;i<d.getDriverList().size();i++){
-            if(d.getDriverList().get(i).ID==id){
-                d.getSuspUser().add(d.getDriverList().get(i).email);
+            if(d.getDriverList().get(i).getID()==id){
+                d.getSuspUser().add(d.getDriverList().get(i).getEmail());
                 d.getDriverList().remove(d.getDriverList().get(i));
             }
-            if(d.getClientList().get(i).ID==id){
-                d.getSuspUser().add(d.getClientList().get(i).email);
+            if(d.getClientList().get(i).getID()==id){
+                d.getSuspUser().add(d.getClientList().get(i).getEmail());
                 d.getClientList().remove(d.getClientList().get(i));
             }
         }

@@ -11,6 +11,7 @@ public class Request {
     private Area destination;
     private Client client;
     private Driver driver;
+    private int numPassenger;
     private ArrayList<Offer>listOffer=new ArrayList<Offer>();
     private TripEvent rEvent;
     /**
@@ -75,11 +76,20 @@ public class Request {
      * @param a2 destination Area
      * @param c client
      */
-    public Request(Area a1, Area a2 , Client c ){
+    public Request(Area a1, Area a2 , Client c ,int np){
         this.source = a1;
         this.destination =a2;
         this.client  = c;
+        this.numPassenger=np;
         notify2();
+    }
+
+    public void setNumPassenger(int numPassenger) {
+        this.numPassenger = numPassenger;
+    }
+
+    public int getNumPassenger() {
+        return numPassenger;
     }
 
     /**

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Mina
  */
 class Rating {
-    ArrayList<Double> arr = new ArrayList<>();
+    private ArrayList<Double> arr = new ArrayList<>();
     private double rate;
     private double avgRate;
 

@@ -37,10 +37,10 @@ public class Client extends User implements SignUp {
      * @param destination destination area for the requested ride
      */
 
-    public String requestRide(String source, String destination) {
+    public String requestRide(String source, String destination,int np) {
         Area src = new Area(source);
         Area dest = new Area(destination);
-        request = new Request(src, dest, this);
+        request = new Request(src, dest, this,np);
         return "Request Ride Created";
     }
 
@@ -50,8 +50,7 @@ public class Client extends User implements SignUp {
      * @param rate the rate that the user will set it to the Driver
      */
     public void rateDriver(Driver d, double rate) {
-        d.rate.addRate(rate);
-        d.rate.setRate(rate);
+        d.getRate().addRate(rate);
     }
 
     /**
@@ -62,7 +61,7 @@ public class Client extends User implements SignUp {
     public String Register() {
         boolean check = false;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
-            if (d.getSuspUser().get(i) == this.email) {
+            if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = true;
             }
         }
@@ -83,7 +82,7 @@ public class Client extends User implements SignUp {
     public String logIn() {
         boolean check = true;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
-            if (d.getSuspUser().get(i) == this.email) {
+            if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = false;
             }
         }
@@ -105,7 +104,7 @@ public class Client extends User implements SignUp {
             if(index==-1){
                 return "You must Register first or Wrong Email";
             }
-            else if(this.email.equals(d.getDriverList().get(index).email)){
+            else if(this.getEmail().equals(d.getDriverList().get(index).getEmail())){
                 return "Your password Wrong";
             }
         }
@@ -126,9 +125,7 @@ public class Client extends User implements SignUp {
        //     System.out.println("Enter Number of Offer to accept");
             request.getListOffer().get(n - 1).accept = true;
             request.getDriver().setCurrentRequest(request);
-            request.getrEvent().AddEvent(new acceptEvent("Accept Event",date.now(),this.userName));
-            request.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),request.getDriver().getUserName(),this.userName));
-            request.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),request.getDriver().getUserName(),this.userName));
+            request.getrEvent().AddEvent(new acceptEvent("Accept Event",date.now(),this.getUserName()));
             d.getEventList().add(request.getrEvent());
             /*System.out.println("Do you want to set Rate ?(Yes/No)");
             String s = sc.next();
@@ -221,10 +218,10 @@ public class Client extends User implements SignUp {
     @Override
     public String toString() {
         return "Client:" + '\n' +
-                "   userName=" + userName + '\n' +
-                "   email=" + email + '\n' +
-                "   mobileNumber=" + mobileNumber + '\n' +
-                "   ID=" + ID + '\n' +
+                "   userName=" + getUserName() + '\n' +
+                "   email=" + getEmail() + '\n' +
+                "   mobileNumber=" + getMobileNumber() + '\n' +
+                "   ID=" + getID() + '\n' +
                 '}' + '\n';
     }
 
