@@ -30,6 +30,10 @@ public class Request  {
         this.rEvent.AddEvent(e);
 
     }
+    public void addOff(Offer of)
+    {
+        this.listOffer.add(of);
+    }
 
     public int getId() {
         return idd;
