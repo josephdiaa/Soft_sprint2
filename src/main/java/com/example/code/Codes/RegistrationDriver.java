@@ -36,8 +36,8 @@ public class RegistrationDriver {
     @Override
     public String toString() {
         return "RegistrationDriver{" +'\n'+
-                "status=" + status +'\n'+
-                driver ;
+                "status=" + status+'\n'+
+                driver;
     }
     public void setDriver(Driver driver){
         this.driver=driver;

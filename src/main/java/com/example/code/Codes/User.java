@@ -1,11 +1,15 @@
 
 package com.example.code.Codes;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @ Class User
  * @author joseph
  */
-abstract class User implements SignIn ,SignUp {
-    static Database d = Database.getInstance();
+public abstract class User implements SignIn ,SignUp {
+    static GeneralDatabase d = Database.getInstance();
     private String userName;
     private String email;
     private String password;
@@ -21,12 +25,12 @@ abstract class User implements SignIn ,SignUp {
      * @param mobileNumber User's MobileNumber
      */
     public User(String userName, String email, String password, String mobileNumber) {
+        count++;
+        this.ID = count;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
-        count++;
-        this.ID = count;
     }
 
     /**
@@ -43,7 +47,7 @@ abstract class User implements SignIn ,SignUp {
      * This function to Get Data Base
      * @return
      */
-    public static Database getD() {
+    public static GeneralDatabase getD() {
         return d;
     }
 
@@ -67,6 +71,8 @@ abstract class User implements SignIn ,SignUp {
      * This is Function to Get User's Password
      * @return User's Password
      */
+    @JsonIgnore
+    @JsonProperty(value = "password")
     public String getPassword() {
         return password;
     }
@@ -158,9 +164,8 @@ abstract class User implements SignIn ,SignUp {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "userName='" + userName+ '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
                 ", ID=" + ID +
                 '}';

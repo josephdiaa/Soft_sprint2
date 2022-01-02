@@ -8,10 +8,10 @@ public class arrivedDestinationEvent implements Event {
     private String Edriver;
     private String userName;
 
-    public arrivedDestinationEvent(String Ename, LocalDateTime date, String Edriver, String userName) {
+    public arrivedDestinationEvent(String Ename, LocalDateTime date, String edriver, String UserName) {
         this.Ename = Ename;
-        this.userName = userName;
-        this.Edriver = Edriver;
+        this.userName = UserName;
+        this.Edriver = edriver;
         this.date = date;
     }
     @Override

@@ -1,6 +1,9 @@
 
 package com.example.code.Codes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 /**
  * @ Class Request
@@ -14,6 +17,8 @@ public class Request  {
     private int numPassenger;
     private ArrayList<Offer>listOffer=new ArrayList<Offer>();
     private TripEvent rEvent=new TripEvent();
+    static private int num=0;
+    private int idd;
 
     /**
      * Default Constructor
@@ -38,10 +43,13 @@ public class Request  {
         return destination;
     }
 
+
     public Client getClient() {
         return client;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "driver")
     public Driver getDriver() {
         return driver;
     }
@@ -107,9 +115,10 @@ public class Request  {
      */
     @Override
     public String toString() {
-        return "Request:" +'\n'+
-                "   source=" + source +'\n'+
-                "   destination=" + destination +'\n'+
-                client +'\n';
+        return "Request{" +
+                "source=" + source +
+                        ", destination=" + destination +
+                ", idd=" + idd +
+                '}';
     }
 }

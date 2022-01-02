@@ -1,31 +1,106 @@
 package com.example.code.conttroller;
 import org.springframework.web.bind.annotation.*;
 import com.example.code.Codes.*;
+
+
 import java.util.ArrayList;
 
 
 @RestController
 public class ClientControl {
-    Client Fristclient=new Client("joseph","joseph.diaa@gami.com","123","012",10,1,2002);
+    GeneralDatabase b=Database.getInstance();
+    Client Fristclient=null;
 
+    @PostMapping("/Client/login/{email}/{pass}/")
+    public String login(@PathVariable String email, @PathVariable String pass) {
+        Client c = new Client(email, pass);
+        if(c.logIn().equalsIgnoreCase("LogIn Successful")){
+            Fristclient=b.matchClient(email,pass);
+            b.addLoginCLient(Fristclient);
+            return Fristclient.logIn();
+        }
+        else
+        {
+            return c.logIn();
+        }
+
+    }
     @GetMapping("/Client/Register")
-    public String RegisterClient(){
-        return Fristclient.Register();
+    public String RegisterClient(@RequestBody Client c){
+        return c.Register();
+    }
+    @GetMapping("/Client/ViewList")
+    public ArrayList<Client> viewListClient(){
+        return  b.getClientList();
+    }
+    @PostMapping("/Client/{id}/RequestRide/{s}/{d}")
+    public String RequestRide(@PathVariable String s, @PathVariable String d,@PathVariable int id){
+        Fristclient=b.searchLogClient(id);
+        if(Fristclient!=null){
+            return Fristclient.requestRide(s,d,2);
+        }
+        else{
+            return "You are not login";
+        }
+    }
+    @GetMapping("/Client/{id}/viewOffer")
+    public ArrayList<Offer> viewoff(@PathVariable int id) {
+        Fristclient=b.searchLogClient(id);
+        if(Fristclient!=null){
+            return Fristclient.ViewOfferList();
+        }
+        else{
+            return null;
+        }
+
+    }
+    @PostMapping("/Client/{id}/acceptOff")
+    public  String acceptoff(@RequestBody int n,@PathVariable int id) {
+        Fristclient=b.searchLogClient(id);
+        if(Fristclient!=null){
+            return Fristclient.AcceptOffer(n);
+        }
+        else{
+            return "You are not login";
+        }
+
     }
 
-    @PostMapping("/Client/RequestRide/{s}/{d}")
-    public String RequestRide(@PathVariable String s, @PathVariable String d){
-        return Fristclient.requestRide(s,d,2);
+    @GetMapping("/Client/{id}/viewClient")
+    public String logOutClient(@PathVariable int id) {
+        Fristclient=b.searchLogClient(id);
+        if(Fristclient!=null){
+            return Fristclient.logOutCleint(Fristclient);
+        }
+        else{
+            return "You are not login";
+        }
     }
-    @GetMapping("/Client/viewOffer")
-    public ArrayList<Offer> viewoff()
-    {
-        return Fristclient.ViewOfferList();
+    @GetMapping("/Client/{id}/view")
+    public Client view(@PathVariable int id){
+        Fristclient=b.searchLogClient(id);
+        if(Fristclient!=null){
+            return Fristclient;
+        }
+        else{
+            return null;
+        }
     }
-    @PostMapping("/Client/acceptOff")
-    public  String acceptoff(@RequestBody int n)
+    @GetMapping("/Client/{idC}/showAvgrate/{idD}")
+    public double showAvg(@PathVariable int idc , @PathVariable int idD)
     {
-       return Fristclient.AcceptOffer(n);
+        return b.matchDriver(idD).showAvgRate();
+    }
+    @GetMapping("/Client/{idC}/rateDriver/{idD}/{rate}")
+    public String rateDriver(@PathVariable int idC ,@PathVariable int idD , @PathVariable double rate)
+    {
+        Fristclient=b.searchLogClient(idC);
+        if(Fristclient!=null){
+            return Fristclient.rateDriver(b.matchDriver(idD) , rate);        }
+        else{
+            return null;
+        }
+
     }
 
 }

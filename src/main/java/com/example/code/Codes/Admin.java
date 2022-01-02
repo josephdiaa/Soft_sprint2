@@ -20,7 +20,17 @@ public class Admin implements SignIn {
     Database d=Database.getInstance();
     private ArrayList<RegistrationDriver> list;
 
-    String addDisArea(Area a)
+    public Admin() {}
+
+    public TripEvent viewEvent(int id){
+        for(int i=0;i<d.getEventList().size();i++){
+            if(d.getEventList().get(i).gettripId()==id){
+                return d.getEventList().get(i);
+            }
+        }
+        return null;
+    }
+    public String addDisArea(Area a)
     {
         d.addDisArea(a);
         return "Area  is added ";
@@ -40,31 +50,8 @@ public class Admin implements SignIn {
     /**
      * this function to view the list of registeration drivers
      */
-    public void viweListRegDriver(){
-        Scanner sc=new Scanner(System.in);
-        for (int i=0;i<d.getRegDriversList().size();i++){
-            System.out.println(d.getRegDriversList().get(i));
-        }
-        while(d.getRegDriversList().size() >= 1){
-            System.out.println("Please Enter Driver ID You want to verify ");
-            int s=sc.nextInt();
-            verify(s);
-            System.out.println("Do You want to Continue ? (Yes/No)");
-            String st=sc.next();
-            if(st.equalsIgnoreCase("yes")){
-                continue;
-            }
-            else if(st.equalsIgnoreCase("No")){
-                System.out.println("Thank You For verify");
-                break;
-            }
-            else{
-                System.out.println("Wrong Input");
-            }
-        }
-        if(d.getRegDriversList().size()==0){
-            System.out.println("This is Last Registration Thank You Admin :)");
-        }
+    public ArrayList<RegistrationDriver> viweListRegDriver(){
+        return d.getRegDriversList();
     };
 
     /**
@@ -86,16 +73,25 @@ public class Admin implements SignIn {
      *this function to suspend user
      * @param id User's ID(Driver/Client) to be suspended
      */
-    public void suspend(int id){
+    public String suspend(int id){
+        boolean checkD=false,checkC=false;
         for(int i=0;i<d.getDriverList().size();i++){
             if(d.getDriverList().get(i).getID()==id){
                 d.getSuspUser().add(d.getDriverList().get(i).getEmail());
                 d.getDriverList().remove(d.getDriverList().get(i));
+                checkD=true;
             }
             if(d.getClientList().get(i).getID()==id){
                 d.getSuspUser().add(d.getClientList().get(i).getEmail());
                 d.getClientList().remove(d.getClientList().get(i));
+                checkC=true;
             }
+        }
+        if(checkC&&!checkD){
+            return "Client with"+id+"Has been Suspended";
+        }
+        else {
+            return "Driver with"+id+"Has been Suspended";
         }
     };
 
@@ -144,15 +140,16 @@ public class Admin implements SignIn {
         boolean flag = false;
         for(int i=0; i< d.getAdminList().size() ;i++)
         {
-            if(this.email.equals(d.getAdminList().get(i).email)&& this.password.equals(d.getAdminList().get(i).password))
+            if(this.email.equals(d.getAdminList().get(i).email)&& this.password.equals(d.getAdminList().get(i).password)){
                 flag = true;
+            }
         }
-        if(flag==true){
-            return "Successful login";
-        }
-        else{
-            return "You are not admin";
-        }
+      if(flag){
+          return "LogIn Successful";
+      }
+      else{
+          return "You are admin";
+      }
     }
-
+ 
 }

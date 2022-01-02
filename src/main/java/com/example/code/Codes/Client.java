@@ -1,5 +1,8 @@
 
 package com.example.code.Codes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,6 +26,13 @@ public class Client extends User implements SignUp {
         this.firstRide = firstRide;
     }
 
+    public Client() {}
+    @JsonIgnore
+    @JsonProperty(value = "request")
+    public Request getRequest() {
+        return request;
+    }
+
     /**
      * CLient's constructor that takes all data
      * @param userName Client's  username
@@ -30,11 +40,23 @@ public class Client extends User implements SignUp {
      * @param password Client's password
      * @param mobileNumber Client's mobile number
      */
-    public Client(String userName, String email, String password, String mobileNumber,int d,int m,int y) {
+    public Client(String userName, String email, String password, String mobileNumber,int da,int mo,int ye) {
         super(userName, email, password, mobileNumber);
-        this.day=d;
-        this.month=m;
-        this.year=y;
+        this.setDay(da);
+        this.setMonth(mo);
+        this.setYear(ye);
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public int getDay() {
@@ -87,13 +109,19 @@ public class Client extends User implements SignUp {
      */
     public String Register() {
         boolean check = false;
+        for(int i=0;i<d.getClientList().size();i++){
+            if(d.getClientList().get(i).getEmail().equals(this.getEmail())){
+                return "This email already used";
+            }
+        }
         for (int i = 0; i < d.getSuspUser().size(); i++) {
             if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = true;
             }
         }
         if (!check) {
-            d.getClientList().add((Client) this);
+            Client c=new Client(this.getUserName(),this.getEmail(),this.getPassword(),this.getMobileNumber(),this.getDay(),this.getMonth(),this.getYear());
+            d.addClient(c);
             return "Successful Registration";
         } else {
             return "suspended e-mail !";
@@ -116,10 +144,11 @@ public class Client extends User implements SignUp {
         boolean flag = false;
         int index=-1;
         for (int i = 0; i < d.getClientList().size(); i++) {
-            if (this.getEmail().equals(d.getClientList().get(i).getEmail()) )
+            if (this.getEmail().equals(d.getClientList().get(i).getEmail()) ){
                 index=i;
-            if(this.getPassword().equals(d.getClientList().get(i).getPassword())){
-                flag = true;
+                if(this.getPassword().equals(d.getClientList().get(i).getPassword())){
+                    flag = true;
+                }
             }
         }
         if (check == false && flag == false) {
@@ -142,26 +171,21 @@ public class Client extends User implements SignUp {
      *This Function to Get list of Request's Offers
      * @throws NullPointerException if there is no offer list
      */
-    public String AcceptOffer(int n) throws NullPointerException {
+
+
+    public String AcceptOffer(int id) throws NullPointerException {
         if(request.getListOffer().size()>=1){
-            //Scanner sc = new Scanner(System.in);
-            //for (int i = 0; i < request.getListOffer().size(); i++) {
-              //  System.out.println("Number of offer: " + (i + 1));
-                //System.out.println(request.getListOffer().get(i));
-            //}
-       //     System.out.println("Enter Number of Offer to accept");
-            request.getListOffer().get(n - 1).setAccept(true);
-            request.getDriver().setCurrentRequest(request);
-            request.getrEvent().AddEvent(new acceptEvent("Accept Event",date.now(),this.getUserName()));
-            d.getEventList().add(request.getrEvent());
-            /*System.out.println("Do you want to set Rate ?(Yes/No)");
-            String s = sc.next();
-            if (s.equalsIgnoreCase("Yes")) {
-                System.out.println("Enter the rate");
-                double rate = sc.nextDouble();
-                this.rateDriver(request.getListOffer().get(n - 1).driver, rate);
+            for(int i=0 ; i<request.getListOffer().size();i++)
+            {
+                if( request.getListOffer().get(i).getId() == id)
+                {
+                   request.getListOffer().get(i).setAccept(true);
+                    request.getListOffer().get(i).getDriver().setCurrentRequest(request);
+
+                    request.addToTripEvent(new acceptEvent("Accept Event",date.now(),this.getUserName()));
+                    d.addTripEvent(request.getrEvent());
+                }
             }
-            */
             request.getListOffer().clear();
             return"Offer Accepted";
         }
@@ -176,80 +200,28 @@ public class Client extends User implements SignUp {
      * This Function to makes Client to rate Drivers
      * @throws IndexOutOfBoundsException if the client chooses the id greater than list of the driver
      */
-    /*public void rateAnyDriver() throws IndexOutOfBoundsException {
-        try {
-            Database d =Database.getInstance();
-            for (int i = 0; i < d.getDriverList().size(); i++) {
-                System.out.println("Driver " + (i + 1));
-                System.out.println(d.getDriverList().get(i));
-            }
-            System.out.println(d.getDriverList().size());
-            if (d.getDriverList().size() == 0) {
-                System.out.println("No drivers available");
-                return;
-            } else {
-                System.out.println("Do you want to rate any Driver ?(yes/no)");
-                Scanner sc = new Scanner(System.in);
-                String s = sc.next();
-                if ("yes".equalsIgnoreCase(s)) {
-                    System.out.println("Choose the Driver number.");
-                    int id = sc.nextInt();
-                    System.out.println("Enter the rate");
-                    double r = sc.nextDouble();
-                    this.rateDriver(d.getDriverList().get(id - 1), r);
-                }
-            }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("No drivers available");
-        }
 
+   @Override
+    public String toString() {
+        return "Client{" +
+                "request=" +request +
+                ", day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                ", firstRide=" + firstRide+
+                '}';
     }
-*/
-    /**
-     * This is Client InterFace
-     */
-    /*
-    public void clientInterface() {
-        while (true) {
-            System.out.println("Client's List");
-            System.out.println("press 1 to request new ride.");
-            System.out.println("press 2 to list all offers.");
-            System.out.println("press 3 to rate Drivers.");
-            System.out.println("press 4 to exit");
-            Scanner sc = new Scanner(System.in);
-            int x = sc.nextInt();
-            switch (x) {
-                case 1 -> {
-                    System.out.println("Enter the source.");
-                    String src = sc.next();
-                    System.out.println("Enter the destination");
-                    String dest = sc.next();
-                    this.requestRide(src, dest);
-                }
-                case 2 -> this.ViewOffer();
-                case 3 -> this.rateAnyDriver();
-                case 4 -> {
-                    break;
-                }
 
-            }
-            if (x == 4)
-                break;
-        }
-    }
-*/
     /**
      *This is Function to Get all Client's Data
      * @return client's data
      */
-    @Override
-    public String toString() {
-        return "Client:" + '\n' +
-                "   userName=" + getUserName() + '\n' +
-                "   email=" + getEmail() + '\n' +
-                "   mobileNumber=" + getMobileNumber() + '\n' +
-                "   ID=" + getID() + '\n' +
-                '}' + '\n';
+
+
+
+    public String logOutCleint(Client u){
+        d.removeClient(this);
+        return"log out Successful";
     }
 
 }

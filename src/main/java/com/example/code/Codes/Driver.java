@@ -20,7 +20,7 @@ public class Driver extends User {
     private DIscount dis;
     //private Boolean inRide;
     private Request currentRequest=new Request();
-
+    public Driver(){}
     public Request getCurrentRequest() {
         return currentRequest;
     }
@@ -47,7 +47,7 @@ public class Driver extends User {
         this.carCapcity=capCar;
         RegistrationDriver r = new RegistrationDriver(this, false);
         //this.inRide=false;
-        d.getRegDriversList().add(r);
+        d.addInRegDriversList(r);
     }
 
     public int getCarCapcity() {
@@ -73,8 +73,9 @@ public class Driver extends User {
      * This function to add favorite Area For Driver
      * @param area ,Driver's favorite Area
      */
-    public void addFavArea(Area area) {
+    public String addFavArea(Area area) {
         favArea.add(area);
+        return "successful Add Area";
     }
 
     /**
@@ -107,23 +108,22 @@ public class Driver extends User {
         Offer off = new Offer();
         off.makeOffer(price, this);
         for (int i = 0; i < Reqs.size(); i++) {
-            if (Reqs.get(i).getClient().getID() == id) {
+            if (Reqs.get(i).getId() == id) {
                 Reqs.get(i).getListOffer().add(off);
                 dis=new DIscount(this.getReqs().get(i),date.now().getDayOfMonth(), date.now().getMonthValue());
                 Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
-
         return "Successful Make Offer";
     }
 
     /**
      * This function makes Driver Show all own ratings from Client
      */
-    public void showRates() {
-        this.rate.viewRatingsList();
-    }//should Change
+    public ArrayList<Double> showRates() {
+        return this.rate.viewRatingsList();
+    }
 
     /**
      * This is function Register
@@ -138,7 +138,8 @@ public class Driver extends User {
             }
         }
         if (!check) {
-            d.getPenDriver().add(this);
+            Driver dr=new Driver(this.getUserName(),this.getEmail(),this.getPassword(),this.getMobileNumber(),this.getNationalId(),this.getDriverLicense(),this.getCarCapcity());
+            d.addtoPenlist(dr);
             return "Successful Register We wait verify from admin";
         } else {
             return "This account has Suspended";
@@ -150,7 +151,7 @@ public class Driver extends User {
      * @return True if LogIn Complete
      * @return False if LogIn inComplete
      */
-    public String logIn() {
+   public String logIn() {
         boolean check = true;
         for (int i = 0; i < d.getSuspUser().size(); i++) {
             if (d.getSuspUser().get(i) == this.getEmail()) {
@@ -294,14 +295,19 @@ public class Driver extends User {
     }
     public String ArriveLocation(Request currentRequest)
     {
-        currentRequest.getrEvent().AddEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
+        currentRequest.addToTripEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
         return "Arrived Location";
     }
     public String endRide(Request currentRequest)
     {
-        currentRequest.getrEvent().AddEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
+        currentRequest.addToTripEvent(new arrivedDestinationEvent("Arrived Destination",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));
+        currentRequest.setrEvent(null);
         currentRequest=null;
-        return "Arrived Des";
+        return "Arrived Destination";
+    }
+    public String addRate(double rate) {
+        this.rate.addRate(rate);
+        return "Thank you !";
     }
 
 }

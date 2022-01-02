@@ -9,6 +9,8 @@ public class Offer  {
     private Driver driver;
     private boolean accept;
     private double discountedPrice;
+    static private int num=0;
+    private int id;
     DIscount dis;
 
     public double getDiscountedPrice() {
@@ -24,6 +26,16 @@ public class Offer  {
      */
     public Offer(){
         accept=false;
+        num++;
+        id=num;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -33,6 +45,7 @@ public class Offer  {
      */
     public void makeOffer(double p,Driver d){
         this.price=p;
+        discountedPrice=p;
         this.driver=d;
     }
 

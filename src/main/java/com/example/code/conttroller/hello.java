@@ -1,3 +1,4 @@
+/*
 package com.example.code.conttroller;
 import com.example.code.Codes.*;
 import org.springframework.web.bind.annotation.*;
@@ -26,3 +27,4 @@ public class hello {
       return d.getReqs();
     }
 }
+*/

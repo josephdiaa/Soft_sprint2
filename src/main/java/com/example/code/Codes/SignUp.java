@@ -6,6 +6,6 @@ package com.example.code.Codes;
  */
 public interface SignUp {
     public default String Register(){
-        return null;
+        return "";
     };
 }

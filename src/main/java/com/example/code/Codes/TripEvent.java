@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 public class TripEvent {
     private ArrayList<Event>arr;
+    private int idtrip;
+
+    public int gettripId() {
+        return idtrip;
+    }
+
+    public void settripId(int id) {
+        this.idtrip = id;
+    }
 
     public TripEvent(){
         arr=new ArrayList<Event>();
@@ -18,5 +27,10 @@ public class TripEvent {
     }
     public void AddEvent(Event e){
         this.arr.add(e);
+    }
+
+    @Override
+    public String toString() {
+        return "TripEvent{" + "arr=" + arr + '}';
     }
 }
