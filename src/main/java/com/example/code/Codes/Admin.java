@@ -19,7 +19,7 @@ public class Admin implements SignIn {
 
     private String email;
     private String password;
-    Database d=Database.getInstance();
+    GeneralDatabase d=Database.getInstance();
     private ArrayList<RegistrationDriver> list;
 
     public Admin() {}
