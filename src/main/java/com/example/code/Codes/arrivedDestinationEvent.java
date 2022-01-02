@@ -33,4 +33,13 @@ public class arrivedDestinationEvent implements Event {
     public void setDate(LocalDateTime date) {
         this.date=date;
     }
+
+
+    public String getEdriver() {
+        return Edriver;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }

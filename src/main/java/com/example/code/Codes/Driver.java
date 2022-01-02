@@ -50,6 +50,7 @@ public class Driver extends User {
         d.addInRegDriversList(r);
     }
 
+
     public int getCarCapcity() {
         return carCapcity;
     }
@@ -110,8 +111,8 @@ public class Driver extends User {
         for (int i = 0; i < Reqs.size(); i++) {
             if (Reqs.get(i).getId() == id) {
                 Reqs.get(i).getListOffer().add(off);
-                dis=new DIscount(this.getReqs().get(i),date.now().getDayOfMonth(), date.now().getMonthValue());
-                Reqs.get(i).getrEvent().AddEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
+                dis=new DIscount(Reqs.get(i),date.now().getDayOfMonth(), date.now().getMonthValue());
+                Reqs.get(i).addToTripEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
                 Reqs.remove(Reqs.get(i));
             }
         }
@@ -132,6 +133,11 @@ public class Driver extends User {
      */
     public String Register() {
         boolean check = false;
+        for(int i=0 ; i<d.getDriverList().size() ;i++)
+        {
+            if(this.getEmail().equalsIgnoreCase(d.getDriverList().get(i).getEmail()))
+                return " Already exits email !";
+        }
         for (int i = 0; i < d.getSuspUser().size(); i++) {
             if (d.getSuspUser().get(i) == this.getEmail()) {
                 check = true;
@@ -293,6 +299,7 @@ public class Driver extends User {
     public void AddReq(Request r){
         this.Reqs.add(r);
     }
+    public  double showAvgRate(){return  this.rate.getAvgRate();}
     public String ArriveLocation(Request currentRequest)
     {
         currentRequest.addToTripEvent(new ArrivedLocationEvent("Arrived Location",date.now(),this.getUserName(),currentRequest.getClient().getUserName()));

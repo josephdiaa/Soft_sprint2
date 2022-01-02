@@ -24,7 +24,15 @@ public class Request  {
      * Default Constructor
      */
     public Request( ){
+    }
+    public  void addToTripEvent(Event e)
+    {
+        this.rEvent.AddEvent(e);
 
+    }
+
+    public int getId() {
+        return idd;
     }
 
     public Area getSource() {
@@ -34,7 +42,8 @@ public class Request  {
     public void setrEvent(TripEvent rEvent) {
         this.rEvent = rEvent;
     }
-
+    @JsonIgnore
+    @JsonProperty(value = "driver")
     public TripEvent getrEvent() {
         return rEvent;
     }
@@ -53,7 +62,8 @@ public class Request  {
     public Driver getDriver() {
         return driver;
     }
-
+    @JsonIgnore
+    @JsonProperty(value = "listOffer")
     public ArrayList<Offer> getListOffer() {
         return listOffer;
     }
@@ -90,6 +100,9 @@ public class Request  {
         this.destination =a2;
         this.client  = c;
         this.numPassenger=np;
+        num++;
+        idd = num;
+        rEvent.settripId(idd);
         notify2();
     }
 

@@ -4,6 +4,8 @@
  * @author Mina
  */
 package com.example.code.Codes;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +138,7 @@ public class Admin implements SignIn {
      * @return 2: if the admin login successfully
      *         3: if the admin not registered
      */
-    public String logIn() {
+    public  String logIn() {
         boolean flag = false;
         for(int i=0; i< d.getAdminList().size() ;i++)
         {

@@ -11,8 +11,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AdminControl {
-    Admin bob = new Admin("bob", "bob123");
+    GeneralDatabase Ad=Database.getInstance();
+    Admin bob = new Admin("bob","bob123");
+    boolean check=false;
 
+    @PostMapping("/Admin/login/{email}/{pass}/")
+    public String login(@PathVariable String email, @PathVariable String pass) {
+        if(bob.logIn().equalsIgnoreCase("LogIn Successful")){
+            check=true;
+            return bob.logIn();
+        }
+        else
+        {
+            return bob.logIn();
+        }
+    }
+
+    @PostMapping("/Admin/adddisArea/")
+    public String addDisArea(@RequestBody Area area) {
+        if(check){
+            return bob.addDisArea(area);
+        }
+        else{
+            return "You are not Login";
+        }
+    }
 
     @PostMapping("/Admin/verification/{id}")
     public String verifyDriver(@PathVariable int id) {

@@ -98,8 +98,9 @@ public class Client extends User implements SignUp {
      * @param d ride's Driver
      * @param rate the rate that the user will set it to the Driver
      */
-    public void rateDriver(Driver d, double rate) {
-        d.getRate().addRate(rate);
+    public String rateDriver(Driver d, double rate) {
+       return d.addRate(rate);
+
     }
 
     /**

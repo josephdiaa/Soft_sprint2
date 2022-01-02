@@ -36,7 +36,7 @@ public  class DIscount {
         }
     }
     public void DiscountNumPass(Request r1){
-        if(r1.getNumPassenger()==2){
+        if(r1.getNumPassenger() == 2){
             for(int i=0;i<r1.getListOffer().size();i++){
                 r1.getListOffer().get(i).setDiscountedPrice(r1.getListOffer().get(i).getDiscountedPrice()-(r1.getListOffer().get(i).getPrice()*0.05));
             }

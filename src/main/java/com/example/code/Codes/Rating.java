@@ -31,8 +31,15 @@ class Rating {
      */
     public void addRate(double rate)
     {
-        if(rate<1 && rate>5)
-            System.out.println("INVALID RATE");
+        if(rate<1) {
+            arr.add(0.0);
+            updateRating();
+        }
+        else if(rate>5)
+        {
+            arr.add(5.0);
+            updateRating();
+        }
         else
         {
             arr.add(rate);
@@ -102,12 +109,8 @@ class Rating {
     /**
      * to view the list of the ratings
      */
-    void viewRatingsList()
+    public ArrayList<Double> viewRatingsList()
     {
-        System.out.println("All Ratings :");
-        for(double r : this.arr)
-        {
-            System.out.println(r);
-        }
+        return  this.arr;
     }
 }
