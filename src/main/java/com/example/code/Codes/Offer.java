@@ -8,7 +8,7 @@ public class Offer  {
     private double price;
     private Driver driver;
     private boolean accept;
-    private double discountedPrice;
+    private double discountedPrice=0;
     static private int num=0;
     private int id;
     DIscount dis;

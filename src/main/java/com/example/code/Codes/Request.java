@@ -43,7 +43,7 @@ public class Request  {
         this.rEvent = rEvent;
     }
     @JsonIgnore
-    @JsonProperty(value = "driver")
+    @JsonProperty(value = "rEvent")
     public TripEvent getrEvent() {
         return rEvent;
     }

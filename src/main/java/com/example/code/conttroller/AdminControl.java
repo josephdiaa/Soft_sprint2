@@ -66,7 +66,7 @@ public class AdminControl {
             return "You are Not logIn";
         }
     }
-    @GetMapping("/Driver/viewtrip/{id}")
+    @GetMapping("/Admin/viewtrip/{id}")
     public  TripEvent viewTrip(@PathVariable int id)
     {return  bob.viewEvent(id);}
 }

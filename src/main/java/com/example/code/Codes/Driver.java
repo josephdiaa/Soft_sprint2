@@ -1,5 +1,8 @@
 
 package com.example.code.Codes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,6 +24,8 @@ public class Driver extends User {
     //private Boolean inRide;
     private Request currentRequest=new Request();
     public Driver(){}
+    @JsonIgnore
+    @JsonProperty(value = "currentRequest")
     public Request getCurrentRequest() {
         return currentRequest;
     }
@@ -108,12 +113,12 @@ public class Driver extends User {
     public String DriverOffer(int id, double price) {
         Offer off = new Offer();
         off.makeOffer(price, this);
-        for (int i = 0; i < Reqs.size(); i++) {
-            if (Reqs.get(i).getId() == id) {
-                Reqs.get(i).getListOffer().add(off);
-                dis=new DIscount(Reqs.get(i),date.now().getDayOfMonth(), date.now().getMonthValue());
-                Reqs.get(i).addToTripEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
-                Reqs.remove(Reqs.get(i));
+        for (int i = 0; i < this.Reqs.size(); i++) {
+            if (this.Reqs.get(i).getId() == id) {
+                this.Reqs.get(i).getListOffer().add(off);
+                dis=new DIscount(this.Reqs.get(i),date.now().getDayOfMonth(), date.now().getMonthValue(),this);
+                this.Reqs.get(i).addToTripEvent(new priceEvent("priceEvent",this.getUserName(), date.now(), price ));
+                this.Reqs.remove(Reqs.get(i));
             }
         }
         return "Successful Make Offer";
@@ -257,6 +262,9 @@ public class Driver extends User {
         return driverLicense;
     }
 
+
+    @JsonIgnore
+    @JsonProperty(value = "Reqs")
     public ArrayList<Request> getReqs() {
         return Reqs;
     }
@@ -285,6 +293,8 @@ public class Driver extends User {
      * This function to get list Favorite Area
      * @return List Favorite Area
      */
+    @JsonIgnore
+    @JsonProperty(value = "favArea")
     public ArrayList<Area> getFavArea() {
         return favArea;
     }

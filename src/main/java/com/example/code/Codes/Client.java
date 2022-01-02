@@ -187,6 +187,7 @@ public class Client extends User implements SignUp {
                     d.addTripEvent(request.getrEvent());
                 }
             }
+            this.setFirstRide(false);
             request.getListOffer().clear();
             return"Offer Accepted";
         }
