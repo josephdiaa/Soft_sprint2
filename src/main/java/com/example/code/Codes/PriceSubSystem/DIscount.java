@@ -1,5 +1,17 @@
-package com.example.code.Codes;
+package com.example.code.Codes.PriceSubSystem;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
+import com.example.code.Codes.ActorSubSystem.Client;
+import com.example.code.Codes.DataBaseSubSystem.Database;
+import com.example.code.Codes.DataBaseSubSystem.GeneralDatabase;
+import com.example.code.Codes.PriceSubSystem.Offer;
+import com.example.code.Codes.RequestTripmangerSubSystem.Area;
+import com.example.code.Codes.RequestTripmangerSubSystem.Request;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -20,7 +32,7 @@ public  class DIscount {
         DiscountHoliDay(d,m,r);
         DiscountArea(r.getDestination(),r.getListOffer());
     }
-    public void DiscountfirstRide(Client c,ArrayList<Offer> of){
+    public void DiscountfirstRide(Client c, ArrayList<Offer> of){
         if(c.isFirstRide()){
             for(int i=0;i<of.size();i++){
                 if(dri.getID()==of.get(i).getDriver().getID()){
@@ -56,7 +68,7 @@ public  class DIscount {
             }
         }
     }
-    public void DiscountArea(Area des,ArrayList<Offer> of){
+    public void DiscountArea(Area des, ArrayList<Offer> of){
         if(checkDisArea(des)){
             for(int i=0;i<of.size();i++){
                 if(dri.getID()==of.get(i).getDriver().getID()){

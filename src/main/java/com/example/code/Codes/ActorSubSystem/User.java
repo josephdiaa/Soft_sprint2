@@ -1,14 +1,22 @@
 
-package com.example.code.Codes;
+package com.example.code.Codes.ActorSubSystem;
 
+import com.example.code.Codes.DataBaseSubSystem.Database;
+import com.example.code.Codes.DataBaseSubSystem.GeneralDatabase;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 /**
  * @ Class User
  * @author joseph
  */
-public abstract class User implements SignIn ,SignUp {
+public abstract class User implements SignIn, SignUp {
     static GeneralDatabase d = Database.getInstance();
     private String userName;
     private String email;

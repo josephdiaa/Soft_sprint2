@@ -1,8 +1,20 @@
 
-package com.example.code.Codes;
+package com.example.code.Codes.DataBaseSubSystem;
 
 
-import javax.xml.crypto.Data;
+import com.example.code.Codes.ActorSubSystem.Admin;
+import com.example.code.Codes.ActorSubSystem.Client;
+import com.example.code.Codes.DriverproperiesSubSystem.RegistrationDriver;
+import com.example.code.Codes.RequestTripmangerSubSystem.Area;
+import com.example.code.Codes.TripEvent.TripEvent;
+import com.example.code.Codes.DriverproperiesSubSystem.Driver;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
+
 import java.util.ArrayList;
 
 /**
@@ -92,7 +104,7 @@ public class Database implements GeneralDatabase {
     }
 
     /**
-     * to get Driver's list
+     * to get com.example.code.Codes.DriverproperiesSubSystem.Driver's list
      *
      * @return list of drivers
      */

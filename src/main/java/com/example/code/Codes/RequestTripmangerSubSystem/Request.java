@@ -1,8 +1,19 @@
 
-package com.example.code.Codes;
+package com.example.code.Codes.RequestTripmangerSubSystem;
 
+import com.example.code.Codes.ActorSubSystem.Client;
+import com.example.code.Codes.PriceSubSystem.Offer;
+import com.example.code.Codes.TripEvent.Event;
+import com.example.code.Codes.TripEvent.TripEvent;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 import java.util.ArrayList;
 /**

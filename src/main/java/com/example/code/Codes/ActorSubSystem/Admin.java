@@ -3,14 +3,21 @@
  * @Class Admin
  * @author Mina
  */
-package com.example.code.Codes;
-import org.springframework.web.bind.annotation.GetMapping;
+package com.example.code.Codes.ActorSubSystem;
+import com.example.code.Codes.RequestTripmangerSubSystem.Area;
+import com.example.code.Codes.DataBaseSubSystem.Database;
+import com.example.code.Codes.DataBaseSubSystem.GeneralDatabase;
+import com.example.code.Codes.DriverproperiesSubSystem.RegistrationDriver;
+import com.example.code.Codes.TripEvent.TripEvent;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListResourceBundle;
-import java.util.Scanner;
+
 /**
  * @Class Admin
  * @author Mina
@@ -19,7 +26,7 @@ public class Admin implements SignIn {
 
     private String email;
     private String password;
-    GeneralDatabase d=Database.getInstance();
+    GeneralDatabase d= Database.getInstance();
     private ArrayList<RegistrationDriver> list;
 
     public Admin() {}
@@ -58,14 +65,14 @@ public class Admin implements SignIn {
 
     /**
      *this function to verify the driver's account
-     * @param id Driver's ID to verify the account
+     * @param id com.example.code.Codes.DriverproperiesSubSystem.Driver's ID to verify the account
      */
     public String verify(int id){
         for(int i=0;i<d.getRegDriversList().size();i++){
             if(d.getRegDriversList().get(i).getDriver().getID()==id) {
                 d.getRegDriversList().get(i).changeStatus(true);
                 d.getRegDriversList().remove(d.getRegDriversList().get(i));
-                return "Driver with id : " + id + " verified";
+                return "com.example.code.Codes.DriverproperiesSubSystem.Driver with id : " + id + " verified";
             }
         }
         return "Not valid id";
@@ -73,7 +80,7 @@ public class Admin implements SignIn {
 
     /**
      *this function to suspend user
-     * @param id User's ID(Driver/Client) to be suspended
+     * @param id User's ID(com.example.code.Codes.DriverproperiesSubSystem.Driver/Client) to be suspended
      */
     public String suspend(int id){
         boolean checkD=false,checkC=false;
@@ -93,7 +100,7 @@ public class Admin implements SignIn {
             return "Client with"+id+"Has been Suspended";
         }
         else {
-            return "Driver with"+id+"Has been Suspended";
+            return "com.example.code.Codes.DriverproperiesSubSystem.Driver with"+id+"Has been Suspended";
         }
     };
 

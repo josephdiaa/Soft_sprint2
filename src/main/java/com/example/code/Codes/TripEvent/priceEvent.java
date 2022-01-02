@@ -1,7 +1,14 @@
-package com.example.code.Codes;
+package com.example.code.Codes.TripEvent;
+import com.example.code.Codes.RequestTripmangerSubSystem.Request;
+
 import java.time.LocalDateTime;
 
-
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 public class priceEvent implements Event{
     private String Ename;

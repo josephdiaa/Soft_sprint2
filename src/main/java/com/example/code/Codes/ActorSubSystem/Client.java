@@ -1,11 +1,23 @@
 
-package com.example.code.Codes;
+package com.example.code.Codes.ActorSubSystem;
+import com.example.code.Codes.RequestTripmangerSubSystem.Area;
+import com.example.code.Codes.PriceSubSystem.Offer;
+import com.example.code.Codes.RequestTripmangerSubSystem.Request;
+import com.example.code.Codes.TripEvent.acceptEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.code.Codes.DriverproperiesSubSystem.Driver;
+
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 /**
  * @Class Client
  * @author Renad
@@ -94,9 +106,9 @@ public class Client extends User implements SignUp {
     }
 
     /**
-     * Client uses rateDriver method to rate the Ride's Driver
-     * @param d ride's Driver
-     * @param rate the rate that the user will set it to the Driver
+     * Client uses rateDriver method to rate the Ride's com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @param d ride's com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @param rate the rate that the user will set it to the com.example.code.Codes.DriverproperiesSubSystem.Driver
      */
     public String rateDriver(Driver d, double rate) {
        return d.addRate(rate);

@@ -1,14 +1,22 @@
 package com.example.code.conttroller;
+import com.example.code.Codes.ActorSubSystem.Client;
+import com.example.code.Codes.DataBaseSubSystem.Database;
+import com.example.code.Codes.DataBaseSubSystem.GeneralDatabase;
+import com.example.code.Codes.PriceSubSystem.Offer;
 import org.springframework.web.bind.annotation.*;
-import com.example.code.Codes.*;
-
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 import java.util.ArrayList;
 
 
 @RestController
 public class ClientControl {
-    GeneralDatabase b=Database.getInstance();
+    GeneralDatabase b= Database.getInstance();
     Client Fristclient=null;
 
     @PostMapping("/Client/login/{email}/{pass}/")

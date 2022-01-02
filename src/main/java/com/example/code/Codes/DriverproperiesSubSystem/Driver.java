@@ -1,17 +1,24 @@
+package com.example.code.Codes.DriverproperiesSubSystem;
 
-package com.example.code.Codes;
+import com.example.code.Codes.ActorSubSystem.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 /**
- * @class Driver
+ * @class com.example.code.Codes.DriverproperiesSubSystem.Driver
  * @author joseph diaa
  */
 public class Driver extends User {
-
+    private GeneralDatabase d=Database.getInstance() ;
     private String driverLicense;
     private boolean driverStatus;
     private String nationalId;
@@ -35,13 +42,13 @@ public class Driver extends User {
     }
 
     /**
-     * Driver's constructor that takes all data
-     * @param userName Driver's UserName
-     * @param email Driver's email
-     * @param password Driver's Password
-     * @param mobileNumber Driver's MobileNumber
-     * @param NationalId Driver's NationalId
-     * @param DriverLicense Driver's DriverLicense
+     * com.example.code.Codes.DriverproperiesSubSystem.Driver's constructor that takes all data
+     * @param userName com.example.code.Codes.DriverproperiesSubSystem.Driver's UserName
+     * @param email com.example.code.Codes.DriverproperiesSubSystem.Driver's email
+     * @param password com.example.code.Codes.DriverproperiesSubSystem.Driver's Password
+     * @param mobileNumber com.example.code.Codes.DriverproperiesSubSystem.Driver's MobileNumber
+     * @param NationalId com.example.code.Codes.DriverproperiesSubSystem.Driver's NationalId
+     * @param DriverLicense com.example.code.Codes.DriverproperiesSubSystem.Driver's DriverLicense
      */
 
     public Driver(String userName, String email, String password, String mobileNumber, String NationalId, String DriverLicense,int capCar ) {
@@ -67,17 +74,17 @@ public class Driver extends User {
         Reqs.add(r);
     }
     /**
-     * Driver's constructor to take username and password for log in
-     * @param email Driver's email
-     * @param password Driver's Password
+     * com.example.code.Codes.DriverproperiesSubSystem.Driver's constructor to take username and password for log in
+     * @param email com.example.code.Codes.DriverproperiesSubSystem.Driver's email
+     * @param password com.example.code.Codes.DriverproperiesSubSystem.Driver's Password
      */
     public Driver(String email, String password) {
         super(email, password);
     }
 
     /**
-     * This function to add favorite Area For Driver
-     * @param area ,Driver's favorite Area
+     * This function to add favorite Area For com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @param area ,com.example.code.Codes.DriverproperiesSubSystem.Driver's favorite Area
      */
     public String addFavArea(Area area) {
         favArea.add(area);
@@ -85,8 +92,8 @@ public class Driver extends User {
     }
 
     /**
-     * This function to Change Driver Status
-     * @param c Driver's status True or False
+     * This function to Change com.example.code.Codes.DriverproperiesSubSystem.Driver Status
+     * @param c com.example.code.Codes.DriverproperiesSubSystem.Driver's status True or False
      */
     public String changeDriverStatus(boolean c) {
         this.driverStatus = c;
@@ -94,7 +101,7 @@ public class Driver extends User {
             d.getDriverList().add(this);
             d.getPenDriver().remove(this);
         }
-        return "Successful Change Driver Status";
+        return "Successful Change com.example.code.Codes.DriverproperiesSubSystem.Driver Status";
     }
 
     public void setReqs(ArrayList<Request> reqs) {
@@ -125,7 +132,7 @@ public class Driver extends User {
     }
 
     /**
-     * This function makes Driver Show all own ratings from Client
+     * This function makes com.example.code.Codes.DriverproperiesSubSystem.Driver Show all own ratings from Client
      */
     public ArrayList<Double> showRates() {
         return this.rate.viewRatingsList();
@@ -180,7 +187,7 @@ public class Driver extends User {
             }
         }
         if (check == false && flag == false) {
-            return "Login failed,Suspended Driver";
+            return "Login failed,Suspended com.example.code.Codes.DriverproperiesSubSystem.Driver";
         } else if (check == true && flag == true) {
 
             return "Login Successful";
@@ -196,12 +203,12 @@ public class Driver extends User {
     }
 
     /**
-     * This function to Display all Driver's Data
-     * @return Driver's Data
+     * This function to Display all com.example.code.Codes.DriverproperiesSubSystem.Driver's Data
+     * @return com.example.code.Codes.DriverproperiesSubSystem.Driver's Data
      */
     @Override
     public String toString() {
-        return "Driver:" + '\n'
+        return "com.example.code.Codes.DriverproperiesSubSystem.Driver:" + '\n'
                 + "   userName=" + getUserName() + '\n'
                 + "   email=" + getEmail() + '\n'
                 + "   mobileNumber=" + getMobileNumber() + '\n'
@@ -223,32 +230,32 @@ public class Driver extends User {
     }
 
     /**
-     * This function to set Driver Status
-     * @param driverStatus Driver's Status
+     * This function to set com.example.code.Codes.DriverproperiesSubSystem.Driver Status
+     * @param driverStatus com.example.code.Codes.DriverproperiesSubSystem.Driver's Status
      */
     public void setDriverStatus(boolean driverStatus) {
         this.driverStatus = driverStatus;
     }
 
     /**
-     * This Function to set Driver National ID
-     * @param nationalId Driver's National ID
+     * This Function to set com.example.code.Codes.DriverproperiesSubSystem.Driver National ID
+     * @param nationalId com.example.code.Codes.DriverproperiesSubSystem.Driver's National ID
      */
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
 
     /**
-     * This function to set Driver's list of Favorite Area
-     * @param favArea Driver's list of Favorite Area
+     * This function to set com.example.code.Codes.DriverproperiesSubSystem.Driver's list of Favorite Area
+     * @param favArea com.example.code.Codes.DriverproperiesSubSystem.Driver's list of Favorite Area
      */
     public void setFavArea(ArrayList<Area> favArea) {
         this.favArea = favArea;
     }
 
     /**
-     * This function to Set Driver's Rate
-     * @param rate Driver's Rate
+     * This function to Set com.example.code.Codes.DriverproperiesSubSystem.Driver's Rate
+     * @param rate com.example.code.Codes.DriverproperiesSubSystem.Driver's Rate
      */
     public void setRate(Rating rate) {
         this.rate = rate;
@@ -300,8 +307,8 @@ public class Driver extends User {
     }
 
     /**
-     * This Function to get Rate fof Driver
-     * @return Driver's Rate
+     * This Function to get Rate fof com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @return com.example.code.Codes.DriverproperiesSubSystem.Driver's Rate
      */
     public Rating getRate() {
         return rate;

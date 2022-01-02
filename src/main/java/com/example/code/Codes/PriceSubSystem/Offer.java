@@ -1,5 +1,12 @@
 
-package com.example.code.Codes;
+package com.example.code.Codes.PriceSubSystem;
+import com.example.code.Codes.RequestTripmangerSubSystem.*;
+import com.example.code.Codes.ActorSubSystem.*;
+import com.example.code.Codes.DriverproperiesSubSystem.*;
+import com.example.code.Codes.DataBaseSubSystem.*;
+import com.example.code.Codes.PriceSubSystem.*;
+import com.example.code.Codes.TripEvent.*;
+
 /**
  * @ Class Offer
  * @author Mina
@@ -41,7 +48,7 @@ public class Offer  {
     /**
      * This function to make offer
      * @param p Offer's Price
-     * @param d Offer's Driver
+     * @param d Offer's com.example.code.Codes.DriverproperiesSubSystem.Driver
      */
     public void makeOffer(double p,Driver d){
         this.price=p;
@@ -57,12 +64,12 @@ public class Offer  {
     public String toString() {
         return "Offer:" +'\n'+
                 "   price=" + price +'\n'+
-                "Driver:"+'\n'+
-                 "  Driver name="+ driver.getUserName() +'\n'
-                +"  Driver mobile ="+driver.getMobileNumber()+'\n'
-                +"  Driver license="+driver.getDriverLicense()+'\n'
-                +"  Driver national ID ="+driver.getNationalId()+'\n'
-                +"  Driver rate = "+driver.getRate().getAvgRate();
+                "com.example.code.Codes.DriverproperiesSubSystem.Driver:"+'\n'+
+                 "  com.example.code.Codes.DriverproperiesSubSystem.Driver name="+ driver.getUserName() +'\n'
+                +"  com.example.code.Codes.DriverproperiesSubSystem.Driver mobile ="+driver.getMobileNumber()+'\n'
+                +"  com.example.code.Codes.DriverproperiesSubSystem.Driver license="+driver.getDriverLicense()+'\n'
+                +"  com.example.code.Codes.DriverproperiesSubSystem.Driver national ID ="+driver.getNationalId()+'\n'
+                +"  com.example.code.Codes.DriverproperiesSubSystem.Driver rate = "+driver.getRate().getAvgRate();
     }
 
     /**
@@ -74,8 +81,8 @@ public class Offer  {
     }
 
     /**
-     * This Function to get Offer's Driver
-     * @return Offer's Driver
+     * This Function to get Offer's com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @return Offer's com.example.code.Codes.DriverproperiesSubSystem.Driver
      */
     public Driver getDriver() {
         return driver;
@@ -98,8 +105,8 @@ public class Offer  {
     }
 
     /**
-     * This Function to Set Offer's Driver
-     * @param driver Offer's Driver
+     * This Function to Set Offer's com.example.code.Codes.DriverproperiesSubSystem.Driver
+     * @param driver Offer's com.example.code.Codes.DriverproperiesSubSystem.Driver
      */
     public void setDriver(Driver driver) {
         this.driver = driver;
